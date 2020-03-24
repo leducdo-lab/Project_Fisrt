@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html >
+<head>
+        
+    <meta charset="utf-8">
+                <title>Truyện Phía Tây Không Có Gì Lạ </title>
+    <link rel="stylesheet" type="text/css" href="/sach.css">
+    <link rel="stylesheet" type="text/css" href="/sach2.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/sach1.css" media="print">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="/css/aos.css">
+
+    <link rel="stylesheet" href="/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/search1.css">
+	
+	<style>
+	    * {
+            margin: 0;
+            padding: 0;
+        } 
+
+        /*==Style cơ bản cho website==*/
+        body {
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        /*==Style cho menu===*/
+        #menu ul {
+        /* background: #1F568B; */
+            list-style-type: none;
+            text-align: center;
+        }
+        #menu li {
+            color: #fff;
+            display: inline-block;
+            width: 130px;
+            height: 50px;
+            line-height: 30px;
+            line-break: 30px;
+            margin-left: -5px;
+        }
+        #menu a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+        }
+        #menu a:hover {
+            background: #fff;
+            color: #333;
+        }
+
+        /*==Dropdown Menu==*/
+        .sub-menu {
+            display: none;
+            position: absolute;
+        }
+        #menu li {
+            position: relative;
+        }
+        #menu li:hover .sub-menu {
+            display: block;
+        }
+        .sub-menu li {
+            margin-left: 0 !important;
+        }
+
+        /*==Menu cấp 3==*/
+        .sub-menu > ul {
+            display: none !important;
+        }
+	</style>
+</head>
+<body>
+    <style type="text/css">
+        .heading-custom{
+            display:flex;
+            flex-direction: column;
+        }
+        .cart-number{
+            margin-top: 100px;
+            margin-left: 30px;
+            width: 25px;
+            background: #2ED62E;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            vertical-align: top;
+        }
+        .cart-number span{
+            font-size: 12px;
+            color: #fff;
+        }
+        .heading-custom div{
+            text-align: center;
+        }
+        
+        
+    </style>
+    <div class="py-1 bg-black top">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <span class="text">+ 1234 5678 98</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <span class="text">DTPBook@gmail.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right justify-content-end">
+                            <p class="mb-0 register-link"><span>Open hours:</span> <span>Monday - Sunday</span> <span>8:00AM - 9:00PM</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="/users">DTPBook</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="oi oi-menu"></span> Menu
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <form>
+                        <input type="text" name="search" placeholder="Search..">
+                    </form>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active"><a href="/users" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="/users/menu" class="nav-link">Menu</a></li>
+                        <li class="nav-item"><a href="taikhoan.html" class="nav-link">Tài khoản</a>
+                            <ul class="sub-menu">
+                            <li><a href="taikhoan.html">Thông tin tài khoản</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li><div class="nav">(Thoát)</div></li> -->
+                        <li ><img src="/images/gh.png" alt="ảnh.png" width="40" height="40"/></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <form action="https://www.fahasa.com/checkout/cart/add/uenc/aHR0cHM6Ly93d3cuZmFoYXNhLmNvbS9waGlhLXRheS1raG9uZy1jby1naS1sYS5odG1s/product/161252/form_key/51QlLw4buCf32Vt2/" method="post" id="product_addtocart_form">
+                    <!--begin web product view UI-->
+            <div class="product-view kasitoo">        
+                <!--begin web UI-->
+                <div class="product-essential col-md-9">
+                    <div class="col-md-5">
+                            <img id="image" class="fhs-p-img" src="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/8/9/8936071674135.jpg" alt="Phía Tây Không Có Gì Lạ" title="Phía Tây Không Có Gì Lạ">    <div class="more-views">
+                    <h2 id="more-views-lightgallery">Xem thêm</h2>
+            <div class="row">
+            <div class="lightgallery">
+            <a class="include-in-gallery" id="lightgallery-item1" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/8/9/8936071674135-1.jpg" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/8/9/8936071674135-1.jpg" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_1_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_1_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_2_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_2_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_3_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_3_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_4_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_4_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+                                                                <a id="lightgallery-more">
+                <label>
+                    +7			</label>
+                </a>
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_5_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_5_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_6_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_6_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_7_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_7_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_8_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_8_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_9_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_9_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+            <a class="include-in-gallery" style="display:none;" href="https://cdn0.fahasa.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_10_2018_11_03_11_45_07.JPG" title="Phía Tây Không Có Gì Lạ">
+                    <img src="https://cdn0.fahasa.com/media/catalog/product/cache/1/thumbnail/56x/9df78eab33525d08d6e5fb8d27136e95/p/h/phia_tay_khong_co_gi_la_10_2018_11_03_11_45_07.JPG" alt="image">
+                </a>
+                                        
+        </div>
+        </div>
+        </div>
+        </div>
+		
+                        <div class="col-md-7">
+                            <h1>
+                                Phía Tây Không Có Gì Lạ 
+                            </h1>
+        
+                            <div class="view-rate row" style="margin: 0px;vertical-align: middle;">
+                                <div class="col-md-6" style="padding: 0px;">
+                                    
+        
+                        <div class="ratings">
+                        <div class="rating-content">
+                            <table>
+                            <tbody>
+                                <tr>
+                                <td>
+                    <a target="_blank" href="https://www.goodreads.com/search?utf8=%E2%9C%93&amp;q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1">
+                                <div class="rating-box">
+                                    <div class="rating" style="width:79.2%"></div>
+                                </div>
+                    </a>
+                                </td>
+                        <td class="review-position"><a target="_blank" href="https://www.goodreads.com/search?utf8=%E2%9C%93&amp;q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1"><span>(324749)</span></a></td>
+                                </tr>
+                                
+                                <tr>
+                                        <td>
+                                                    <a href="#customer-reviews">
+                                <div class="rating-box">
+                                    
+                                    <div class="rating" style="width:100%"></div>
+                                    
+                                </div>
+                                </a>
+                                                
+                        </td>
+                        <td class="review-position">
+                            <p class="rating-links">
+                                <a href="#customer-reviews">(6)</a>
+                                
+                            </p>
+                        </td>
+                    </tr>
+                                
+                    
+                </tbody></table>
+                </div>
+                <div class="rating-content">
+                <table>
+                                <tbody><tr>
+                        <td colspan="3" class="review-lable">
+                            <a href="#review-form">Thêm nhận xét của bạn</a>
+                        </td>
+                    </tr>
+                    
+                            </tbody></table>
+                </div>
+            </div>
+        
+                                </div>
+                                <div class="col-md-6">
+                                        <div>
+                <div style="display: none;" class="youama-ajaxlogin-loader"></div>
+                <div class="youama-noti-window-sucess" id="alert-vote-product">
+                    <div class="youama-window-outside">
+                        <span class="close">×</span>
+                        <div class="youama-window-inside">
+                            <div class="youama-window-title">
+                                <h3 class="error"></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div>
+                    <div id="vote-product" style="font-family: Helvetica, Arial, sans-serif;">
+                    <div style="float: right"><a id="vote-product-button" class="btn-vote-inactive">
+                    <i id="vote-product-icon" class="fa fa-star btn-vote-title" style="margin-right: 5px;color:#ffffff;"></i><span class="btn-vote-title" style="color:#ffffff;">0 Bình chọn</span></a></div></div>
+                    </div>
+        
+                    </div>
+    </div>
+</div>
+<div class="col-md-12 price-block">
+    <div id="catalog-product-details-price" class="col-md-6 price-block-left" style="">
+        
+
+    
+<div class="price-box">
+                        
+                <p class="special-price">
+<span class="price-label">Special Price</span>
+<span class="price" id="product-price-161252">
+42.250&nbsp;đ                </span>
+</p>
+                <p class="old-price">
+<span class="price-label">Regular Price:</span>
+<span class="price" id="old-price-161252">
+65.000&nbsp;đ                </span>
+</p>
+    
+
+
+</div>
+
+    </div>
+    <div id="catalog-product-details-discount" class="col-md-6 price-block-right" style="">
+                            <span class="discount-percent">-35%</span>
+    </div>
+                                            
+                                            
+                        <div class="col-md-12 add-to-box add-to-box2"><span></span>
+                            <div class="add-to-cart col-md-12 col-sm-12 col-sms-12">
+                                <label for="qty">Số lượng:</label>
+                        <input type="text" name="qty" id="qty" maxlength="12" value="1" title="SL" class="input-text qty">
+                                <!--
+                        <button type="button" title="" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><i class="fa fa-shopping-cart"></i>Chọn mua</span></span></button>
+                        -->
+                                        <button type="button" title="Chọn mua" class="button btn-cart-view " onclick="productAddToCartForm.submit(this); return false;"><span><span><i class="fa fa-shopping-cart"></i>Chọn mua</span></span></button>
+                                            
+                                        <!--// show message-->
+                                        
+                            
+                            </div>
+                                                                                                </div>
+                                    <div class="col-md-12 additional-list">
+                                        <div class="col-md-4">
+                                            <!-- ESI START DUMMY COMMENT [] -->
+                <!-- ESI URL DUMMY COMMENT -->
+                
+                
+                
+                <ul class="add-to-links">
+                            <li><a href="https://www.fahasa.com/customer/account/login/" onclick="return false;" title="Yêu thích" class=""><i class="fa fa-heart"></i>Yêu thích</a></li>
+                    
+                </ul>
+                
+                <!-- ESI END DUMMY COMMENT [] -->
+                                        </div>
+                                        <div class="col-md-7 add-review-link">
+                                            <a href="#review-form"><i class="fa fa-edit"></i>Thêm nhận xét của bạn</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 short-description">
+                                        <span style="font-weight: bold; color: black; font-size: 13px; font-family: Roboto,Helvetica,Arial,sans-serif">Phía Tây Không Có Gì Lạ. 
+                Thế chiến thứ nhất nổ ra,</span> những chàng trai đang ngồi trên ghế nhà trường bị chuyển thẳng ra mặt trận. Tại đây sự khốc liệt của chiến tranh đã khiến họ tê dại khi bom đạn không chỉ tước đi những phần cơ thể mà còn cả tâm hồn. Thế nên chưa kịp trưởng thành họ đã trở nên già nua, bởi gần với cái chết hơn là sự sống. Họ cũng ...                        <a href="https://www.fahasa.com/phia-tay-khong-co-gi-la.html#product_tabs_description_contents" class="xem-chi-tiet">Xem thêm</a>
+                                    </div>
+                                </div>
+                                            </div>
+                                            <ul class="product-tabs" id="fhs-tab-extra-info">
+                                                <li id="product_tabs_additional_person" class=" active first"><a href="javascript:void(0)">Thông tin sản phẩm</a></li>
+                                                            </ul>
+                                        <div class="content">
+                            <div id="product-additional-description" class="product-additional-description">
+                            <div class="product-tabs-content" id="product_tabs_additional_contents" style="">
+                                <h2>Thông Tin Chi Tiết</h2>
+                                <table class="data-table table-striped" id="product-attribute-specs-table">
+                                <colgroup><col width="25%">
+                                <col>
+                                </colgroup><tbody>
+                                    <tr class="even">                                                                                                                   <tr class="odd">
+                                    <th class="label">Tác giả</th>
+                                    <td class="data last">
+                                                        Erich Maria Remarque			    			</td>
+                                    </tr>
+                                                                                                    
+                                            <tr class="odd">
+                                                <th class="label">NXB</th>
+                                                <td class="data last">
+                                                    NXB Văn Học                         </td>
+                                            </tr>
+                                            <tr class="odd">
+                                                <th class="label">Năm XB</th>
+                                                <td class="data last">
+                                                    2017                        </td>
+                                            </tr>
+                                                                                
+                                            </tbody>
+                            </table>
+                            <script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
+            </div>
+    
+        <div class="product-tabs-content" id="product_tabs_description_contents" style="display: none; height: 432px; min-height: 400px;">
+                <h2>Giới Thiệu Nội Dung Sản Phẩm</h2>
+        <div id="desc_content" class="std" style="overflow: hidden; height: 340px;">
+            <p style="text-align: justify;">Phía Tây Không Có Gì Lạ</p>
+            <p style="text-align: justify;">Thế chiến thứ nhất nổ ra, những chàng trai đang ngồi trên ghế nhà trường bị chuyển thẳng ra mặt trận. Tại đây sự khốc liệt của chiến tranh đã khiến họ tê dại khi bom đạn không chỉ tước đi những phần cơ thể mà còn cả tâm hồn. Thế nên chưa kịp trưởng thành họ đã trở nên già nua, bởi gần với cái chết hơn là sự sống. Họ cũng chẳng còn tin tưởng ai, chẳng thiết tha điều gì, kể cả ngày trở về.</p>
+            <p style="text-align: justify;">Cho nên khi tất cả đồng đội cùng trang lứa đã ngã xuống, cái chết đối với những chàng trai ấy là sự giải thoát. Họ nằm xuống nhẹ nhangfm thanh than đến độ tưởng như chẳng hề may may lay động đến thứ gì xung quanh, dù chỉ là một ngọn cỏ. Mặt trận hoàn toàn yên tĩnh, bản báo cáo chiến trường chỉ ghi vẻn vẹn một câu: “Ở phía Tây, không có gì lạ.” Phải, chẳng có gì lạ, chỉ có một người vừa rời khỏi cuộc đời khi độ tuổi mới chớm đôi mươi.</p>
+        </div>
+        <!-- <div id="desc_viewmore" class="desc_viewmore" style="">
+            <div id="btn_showmore"><i class="fa fa-angle-down"></i></div> -->
+        </div>
+        </div>
+    
+    
+    
+</body>
+</html>

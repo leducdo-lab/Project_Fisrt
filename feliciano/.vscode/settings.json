@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "database": "DTPBook",
+            "dialect": "MSSQL",
+            "name": "DTPBook",
+            "password": "Dockersql123",
+            "port": 1433,
+            "server": "localhost",
+            "username": "SA"
+        }
+    ],
+    "git.ignoreLimitWarning": true
+}

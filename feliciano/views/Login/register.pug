@@ -1,0 +1,121 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='author', content='Kodinger')
+  title My Login Page
+  link(rel='stylesheet', type='text/css', href='./bootstrap/css/bootstrap.min.css')
+  link(rel='stylesheet', type='text/css', href='/css/my-login.css')
+  link(href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900', rel='stylesheet')
+  link(href='https://fonts.googleapis.com/css?family=Great+Vibes&display=swap', rel='stylesheet')
+  link(rel='stylesheet', href='/css/open-iconic-bootstrap.min.css')
+  link(rel='stylesheet', href='/css/animate.css')
+  link(rel='stylesheet', href='/css/owl.carousel.min.css')
+  link(rel='stylesheet', href='/css/owl.theme.default.min.css')
+  link(rel='stylesheet', href='/css/magnific-popup.css')
+  link(rel='stylesheet', href='/css/aos.css')
+  link(rel='stylesheet', href='/css/ionicons.min.css')
+  link(rel='stylesheet', href='/css/bootstrap-datepicker.css')
+  link(rel='stylesheet', href='/css/jquery.timepicker.css')
+  link(rel='stylesheet', href='/css/flaticon.css')
+  link(rel='stylesheet', href='/css/icomoon.css')
+  link(rel='stylesheet', href='/css/style.css')
+.py-1.bg-black.top
+  .container
+    .row.no-gutters.d-flex.align-items-start.align-items-center.px-md-0
+      .col-lg-12.d-block
+        .row.d-flex
+          .col-md.pr-4.d-flex.topper.align-items-center
+            .icon.mr-2.d-flex.justify-content-center.align-items-center
+              span.icon-phone2
+            span.text + 1235 2355 98
+          .col-md.pr-4.d-flex.topper.align-items-center
+            .icon.mr-2.d-flex.justify-content-center.align-items-center
+              span.icon-paper-plane
+            span.text youremail@email.com
+          .col-md-5.pr-4.d-flex.topper.align-items-center.text-lg-right.justify-content-end
+            p.mb-0.register-link
+              span Open hours:
+              span Monday - Sunday
+              span 8:00AM - 9:00PM
+nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light
+  .container
+    a.navbar-brand(href='/home') DTPBook
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#ftco-nav', aria-controls='ftco-nav', aria-expanded='false', aria-label='Toggle navigation')
+      span.oi.oi-menu
+      |  Menu
+    #ftco-nav.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        li.nav-item
+          a.nav-link(href='/home') Home
+        li.nav-item
+          a.nav-link(href='/home') Menu
+        li.nav-item.cta
+          a.nav-link(href='/home/login') Login
+// END nav
+section.hero-wrap.hero-wrap-2(style="background-image: url('/login/img/sach1.jpg');", data-stellar-background-ratio='0.5')
+  .overlay
+  .container
+    .row.no-gutters.slider-text.align-items-end.justify-content-center
+      .col-md-9.ftco-animate.text-center.mb-4
+        h1.mb-2.bread Login
+        p.breadcrumbs
+          span.mr-2
+            a(href='/home')
+                | Home 
+                i.ion-ios-arrow-forward
+          span
+                | Login 
+                i.ion-ios-arrow-forward
+section.h-100
+  .slider-item.js-fullheight(style='background-image: url(/login/img/nen5.jpg);')
+    .container.h-100
+      .row.justify-content-md-center.h-100
+        .card-wrapper
+          // <div class="card fat">
+          .card-body
+            h1(style='color: white;') &Dstrok;&abreve;ng k&yacute;
+            if errors
+              .alert.alert-danger= errors   
+            form(method='POST', action='/home/login/register') 
+              .form-group
+                label(for='email') E-Mail
+                input#email.form-control(type='email', name='email', required='') 
+              .form-group
+                label(for='password') M&#x1EAD;t kh&#x1EA9;u
+                input#password.form-control(type='password', name='password', required='', data-eye='')
+              .form-group
+                label(for='text') H&#x1ECD; v&agrave; t&ecirc;n
+                input#Name.form-control(type='text', name='name', required='', data-eye='')
+              .form-group
+                label(for='radio') Gi&#x1EDB;i T&iacute;nh
+                    div(style='color: white')
+                        input#gioitinh(style='padding-right: 10px;', type='radio', name='gioitinh', required='', data-eye='', value='nam')
+                        |  Nam
+                    div(style='color: white')
+                        input#gioitinh(type='radio', name='gioitinh', required='', data-eye='', value='nữ')
+                        |  N&#x1EEF;
+              .form-group
+                label(for='date') Ng&agrave;y sinh
+                input#date.form-control(type='date', name='date', required='', data-eye='')
+              .form-group
+                label(for='text') &Dstrok;&#x1ECB;a Ch&#x1EC9;
+                input#Map.form-control(type='text', name='Map', required='', data-eye='', value='')
+              .form-group
+                label(for='text') Phone
+                input#Phone.form-control(type='text', name='Phone', required='', data-eye='', value='')
+              .form-group
+                label
+                  input(type='checkbox', name='aggree', value='1')
+                  |  T&ocirc;i &dstrok;&#x1ED3;ng &yacute; v&#x1EDB;i c&aacute;c &dstrok;i&#x1EC1;u kho&#x1EA3;n
+              .form-group.no-margin
+                button.btn.btn-primary.btn-block(type='submit')
+                  | Register
+              .margin-top20.text-center
+                | Already have an account? 
+                a(href='/home/login') Login 
+          // </div>
+          .footer
+            | Copyright &copy; Your Company 2017
+script(src='/js/jquery.min.js')
+script(src='/bootstrap/js/bootstrap.min.js')
+script(src='/js/my-login.js')

@@ -1,0 +1,11 @@
+p.alignLeft {
+    text-algin: left;
+}
+
+p.alignCenter {
+    text-algin: center;
+}
+
+p.alignRight {
+    text-algin: right;
+}

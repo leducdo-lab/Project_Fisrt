@@ -1,6 +1,6 @@
 var express = require('express');
 var sql = require('mssql');
-    var cofig = {
+    var config = {
         user: 'SA',
         password: 'Dockersql123',
         server: 'localhost', 
@@ -14,19 +14,68 @@ module.exports.requireAuth = function(req, res, next){
         return;
     }
 
-    sql.connect(cofig, function(err){
+    sql.connect(config, function(err){
         if(err) throw err;
-        var request = new sql.Request();
-
+        sql.close();
         var CheckUser = "SELECT IDND FROM NguoiDung WHERE IDND = "+req.cookies.UsersID;
-        request.query(CheckUser, function(err, result){
+        new sql.Request().query(CheckUser, function(err, result){
             if(result.recordset.length.valueOf() == 0){
                 res.redirect('/home/login');
                 return;
-            }
+            } 
+
             res.locals.user = result.recordset.IDND;
         });
     });
     
     next();
+};
+
+module.exports.NewBook = function(req, res, next){
+    sql.connect(config, function(err){
+        if(err) throw err;
+        
+        var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+
+        new sql.Request().query(SLBook, function(err, result){
+            sql.close();
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var perpage = result.recordset.length / perPage;
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+            if(err) throw err;
+            else{
+                res.render('index',{
+                    data: result.recordset.slice(start, end),
+                    user : req.cookies.UsersID,
+                    page : pages,
+                    perP : perpage
+                });
+            }
+        });
+    });
+};
+
+module.exports.MAXBook = function(req, res, next){
+    sql.connect(config, function(err){
+        if(err) throw err;
+        var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
+        new sql.Request().query(SL, function(err, result){
+            if(err) throw err;
+            if(req.cookies.UsersID){
+                res.render('index',{
+                    datas: result.recordset,
+                    user : req.cookies.UsersID
+                });
+            }
+            if(!req.cookies.UsersID){
+                res.render('index',{
+                    datas: result.recordset
+                });
+            }
+            sql.close();
+        });
+    });
 };

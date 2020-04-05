@@ -1,0 +1,402 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  title Admin - DTPBook
+  link(href='/css/bootstrap.min.css', rel='stylesheet')
+  link(href='/css/datepicker3.css', rel='stylesheet')
+  link(href='/css/bootstrap-table.css', rel='stylesheet')
+  link(href='/css/styles.css', rel='stylesheet')
+  link(rel='stylesheet', href='/css/footer.css')
+  link(type='text/css', rel='stylesheet', href='/css/thanhvien.css')
+  style#glyphs-style(type='text/css').
+    .glyph{
+    fill:currentColor;
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    text-align:center;
+    vertical-align:middle;
+    width:70%;
+    height:70%;
+    }
+    .glyph.sm{width:30%;height:30%;}
+    .glyph.md{width:50%;height:50%;}
+    .glyph.lg{height:100%;width:100%;}
+    .glyph-svg{width:100%;height:100%;}
+    .glyph-svg .fill{fill:inherit;}
+    .glyph-svg .line{stroke:currentColor;stroke-width:inherit;}
+    .glyph.spin{animation: spin 1s linear infinite;}
+    @-webkit-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @-moz-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+  style.
+    table{
+    border: none;
+    width: 50%;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    .lienket{
+    background-color: white;
+    color: black;
+    border: 2px solid #73AD21;
+    border-radius:5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Lucida Sans Unicode";
+    margin-left: 15px;
+    margin-right: 15px;
+    }
+    .lienket:hover{
+    background-color: #73AD21;
+    color:white;
+    }
+    .lienket:active{
+    background-color: green;
+    border-color: green;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    background-image: url(../images/nen5.jpg);
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    .input[type=text] {
+    height: 100px;
+    width: 135%;
+    overflow:auto;
+    }
+    textarea {
+    width: 150%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    }
+    .in[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+    .button {
+    background-color:royalblue; /* màu của Quản trị mạng ^^ */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+style(type='text/css').
+  header{
+  border:1px solid #ccc;
+  background-color:black;
+  color:white;
+  text-align: center;
+  padding-bottom: 15px;
+  }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/addmin', style='font-size: x-large;') DTPBook
+        li
+          form(action='/search', method='GET')
+            input.in(type='text', name='q', placeholder='Search')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='/addmin') Home
+        li
+          a(href='/users/menu?page=1') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/qltv') Quản lý
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+br
+br
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+  .row
+    // <ol  >
+    li
+      a.lienket(href='/qltv') Qu&#x1EA3;n l&yacute; th&agrave;nh vi&ecirc;n
+    // <li class="active">Danh sách thành viên</li>
+    //
+      </ol>
+      <ol >
+    li
+      a.lienket(href='/addbook') Th&ecirc;m s&aacute;ch
+    // <li class="active">Thêm sách</li>
+    //
+      </ol>
+      <ol >
+    li
+      a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
+    // <li class="active">Quản lý sách</li>
+    // </ol>
+  .row
+    .col-lg-12
+      h2(style='color:gold; margin-left: 400px; margin-top: 50px;') Ch&#x1EC9;nh s&#x1EED;a th&ocirc;ng tin s&aacute;ch
+  form(action='/Suabook', method='POST')
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') T&ecirc;n s&aacute;ch
+      .ty-control-value
+        input#tensach.ty-input-text.cm-focus(type='text', name='tensach', size='50', maxlength='128', value=data[0].TenSach.toString())
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') &#x1EA2;nh s&aacute;ch
+      .ty-control-value
+        input#Anh.ty-input-text.cm-focus(type='file', name='Anh', size='50', maxlength='128', style='color: #fff;')
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Th&#x1EC3; lo&#x1EA1;i
+      .popup__select.ty-control-value
+        select.select-date(name='user_data[ngay]')
+          option(value='') Th&#x1EC3; lo&#x1EA1;i
+          option(value='Văn học') V&abreve;n h&#x1ECD;c
+          option(value='Kỹ năng sống') K&#x1EF9; n&abreve;ng s&#x1ED1;ng
+          option(value='Tiểu thuyết') Ti&#x1EC3;u thuy&#x1EBF;t
+          option(value='Truyện tranh') Truy&#x1EC7;n tranh
+          option(value='Văn hóa - Kinh tế') V&abreve;n h&oacute;a - Kinh t&#x1EBF;
+          option(value='Kiến thức tổng hợp') Ki&#x1EBF;n th&#x1EE9;c t&#x1ED5;ng h&#x1EE3;p
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') M&ocirc; t&#x1EA3;
+      .ty-control-value
+        textarea(name='MoTa')= data[0].MoTa.toString()
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim.cm-phone(for='cm_phone', style='color: #fff;') S&#x1ED1; l&#x1B0;&#x1EE3;ng
+      .ty-control-value
+        input#soluong.ty-input-text.cm-focus(type='number', name='soluong', size='50', maxlength='12', value=data[0].SoLuong.toString())
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;')  T&aacute;c gi&#x1EA3;
+      .ty-control-value
+        input#tensach.ty-input-text.cm-focus(type='text', name='Tacgia', size='50', maxlength='128', value=data[0].TacGia.toString())
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Nh&agrave; xu&#x1EA5;t b&#x1EA3;n
+      .ty-control-value
+        input#tensach.ty-input-text.cm-focus(type='text', name='Nhaxuatban', size='50', maxlength='128', value=data[0].NhaXB.toString())
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Ng&agrave;y xu&#x1EA5;t b&#x1EA3;n
+      .popup__select.ty-control-value
+        if(ddmmyy.length == 3)
+            select.select-date(name='user_data[ngay]')
+                - for(var x = 0; x < 31; x++)
+                    if((ddmmyy[0] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[0] != undefined) && ((x+1).toString() == ddmmyy[0]))
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].toString()
+                    else
+                        option(value=(x+1).toString())=(x+1).toString()
+            select.select-date(name='user_data[thang]')
+                - for(var x = 0; x < 12; x++)
+                    if((ddmmyy[1] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[1] != undefined) && ('0'+(x+1).toString() == ddmmyy[1]))
+                        option(value=ddmmyy[1].toString(), selected='selected')= ddmmyy[1].slice(1,2).toString()
+                    else
+                        option(value=(x+1).toString())= (x+1).toString()
+            select.select-date(name='user_data[nam]')
+                - for(var x = 1930; x <= date; x++)
+                    if(ddmmyy[2] == undefined && x == 1930)
+                        option(value='1930', selected='selected') 1930
+                    if(ddmmyy[2] != undefined && x.toString() == ddmmyy[2])
+                        option(value=ddmmyy[2].toString(), selected='selected')= ddmmyy[2].toString()
+                    else
+                        option(value=x.toString())= x.toString()
+        if(ddmmyy.length == 2)
+            select.select-date(name='user_data[ngay]')
+                - for(var x = 0; x < 31; x++)
+                    if((ddmmyy[0] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[0] != undefined) && ((x+1).toString() == ddmmyy[0]))
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].toString()
+                    else
+                        option(value=(x+1).toString())=(x+1).toString()
+            select.select-date(name='user_data[thang]')
+                - for(var x = 0; x < 12; x++)
+                    if((ddmmyy[0] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[0] != undefined) && ('0'+(x+1).toString() == ddmmyy[0]))
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].slice(1,2).toString()
+                    else
+                        option(value=(x+1).toString())=(x+1).toString()
+            select.select-date(name='user_data[nam]')
+                - for(var x = 1930; x <= date; x++)
+                    if(ddmmyy[1] == undefined && x == 1930)
+                        option(value='1930', selected='selected') 1930
+                    if(ddmmyy[1] != undefined && x.toString() == ddmmyy[1])
+                        option(value=ddmmyy[1].toString(), selected='selected')= ddmmyy[1].toString()
+                    else
+                        option(value=x.toString())= x.toString()
+        if(ddmmyy.length == 1)
+            select.select-date(name='user_data[ngay]')
+                - for(var x = 0; x < 31; x++)
+                    if((ddmmyy[0] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[0] != undefined) && ((x+1).toString() == ddmmyy[0]))
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].toString()
+                    else
+                        option(value=(x+1).toString())=(x+1).toString()
+            select.select-date(name='user_data[thang]')
+                - for(var x = 0; x < 12; x++)
+                    if((ddmmyy[0] == undefined) && (x == 0))
+                        option(value='1', selected='selected') 1
+                    if((ddmmyy[0] != undefined) && ('0'+(x+1).toString() == ddmmyy[0]))
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].slice(1,2).toString()
+                    else
+                        option(value=(x+1).toString())= (x+1).toString()
+            select.select-date(name='user_data[nam]')
+                - for(var x = 1930; x <= date; x++)
+                    if(ddmmyy[0] == undefined && x == 1930)
+                        option(value='1930', selected='selected') 1930
+                    if(ddmmyy[0] != undefined && x.toString() == ddmmyy[0])
+                        option(value=ddmmyy[0].toString(), selected='selected')= ddmmyy[0].toString()
+                    else
+                        option(value=x.toString())= x.toString()
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      .ty-control-label
+        label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Gi&aacute; ti&#x1EC1;n {$}
+      script.
+        function format_curency(a) {
+        a.value = a.value.replace(/(\\d)(?=(\d{3})+(?!\d))/g, "$1.");
+        }
+      input#Gia(onchange='format_curency(this);', type='text', name='Giatien', size='50', max='100000', value=data[0].Gia.toString())
+      //
+        <div class="ty-control-value">
+        <input type="number" id="Gia" name="Giatien" size="32" max="100000" class="ty-input-text cm-focus">
+        </div>
+    .ty-control-group(style='margin: 25px 400px 25px; ')
+      button.button(type='submit')
+        | L&#x1B0;u
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4.text(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved

@@ -1,0 +1,273 @@
+doctype html
+head
+  title Ch&#x1EC9;nh s&#x1EED;a h&#x1ED3; s&#x1A1; - DTPBook
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8', data-ca-mode='')
+  link(type='text/css', rel='stylesheet', href='/css/thanhvien.css')
+  link(rel='stylesheet', href='/css/footer.css')
+  style.
+    table{
+    border: none;
+    width: 50%;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    background-image: url(images/nen5.jpg);
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    .in[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+
+  style(type='text/css').
+    .cm-noscript {display:none}
+  style(type='text/css').
+    @keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#QXyLtfi-1576316172378{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#m7nXJxr-1576316172380.open{animation : tawkMaxOpen .25s ease!important;}
+style(type='text/css').
+  header{
+  border:1px solid #ccc;
+  background-color:black;
+  color:white;
+  text-align:center;
+  padding-bottom:25px;
+  }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/users', style='font-size: x-large;') DTPBook
+        li
+          form(action='/users/search', method='GET')
+            input.in(type='text', name='q', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='/users') Home
+        li
+          a(href='/users/menu?page=1') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='35', height='35', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+.row
+  .span16.box-products-white.box-notification
+    .row
+      .span4
+        ul.menu-notification
+          li
+            a.active(href='/users/UsersTK')
+              i.icon-user
+              | Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+          li
+            a(href='/users/QlyDon')
+              i.icon-file-text-alt
+              | Qu&#x1EA3;n l&yacute; &dstrok;&#x1A1;n h&agrave;ng
+          li
+            a(href='')
+              i.icon-table
+              | Nh&#x1EAD;n x&eacute;t c&#x1EE7;a t&ocirc;i
+      .span12
+        .box-content-notification
+          // Inline script moved to the bottom of the page
+          #content_general.ty-profile-field.ty-account.form-wrap
+            form.cm-processed-form(action='/users/UsersTK', method='POST')
+              input#selected_section(type='hidden', value='general', name='selected_section')
+              input#default_card_id(type='hidden', value='', name='default_cc')
+              input(type='hidden', name='profile_id', value='15448')
+              h3.ty-subheader Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-trim(for='firstname') H&#x1ECD; v&agrave; t&ecirc;n
+                .ty-control-value
+                  input#firstname.ty-input-text.cm-focus(type='text', name='user_data[firstname]', size='32', maxlength='128', value=data[0].Ten.toString())
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-trim.cm-phone(for='cm_phone') S&Dstrok;T
+                .ty-control-value
+                  input#cm_phone.ty-input-text.cm-focus(type='text', name='user_data[phone]', size='32', maxlength='128', value=data[0].Phone.toString())
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-trim.cm-phone(for='cm_phone') Địa Chỉ
+                .ty-control-value
+                  input#cm_phone.ty-input-text.cm-focus(type='text', name='user_data[diachi]', size='32', maxlength='128', value=data[0].DiaChi.toString())
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-email.cm-trim(for='email') Tên Đăng Nhập
+                .ty-control-value
+                  input#email.ty-input-text(type='text', name='user_data[email]', size='32', maxlength='128', value=data[0].TenDN.toString())
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-password(for='password1') M&#x1EAD;t kh&#x1EA9;u
+                .ty-control-value
+                  input#password1.ty-input-text.cm-autocomplete-off(type='password', name='user_data[password1]', size='32', maxlength='32', value=data[0].MatKhau.toString(), autocomplete='off')
+              .ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title.cm-required.cm-password(for='password2') X&aacute;c nh&#x1EAD;n m&#x1EAD;t kh&#x1EA9;u
+                .ty-control-value
+                  input#password2.ty-input-text.cm-autocomplete-off(type='password', name='user_data[password2]', size='32', maxlength='32', value=data[0].MatKhau.toString(), autocomplete='off')
+              // Inline script moved to the bottom of the page
+              .form.ty-control-group
+                .ty-control-label
+                  label.cm-required.ty-control-group__title(for='gioitinh') Gi&#x1EDB;i t&iacute;nh
+                .popup__checkbox.popup__checkbox--inline.ty-control-value
+                    if(data[0].GioiTinh == false)
+                        input#male_add(type='radio', name='user_data[render]', value='0', checked='checked')
+                        label(for='male_add') Nam
+                        input#female_add(type='radio', name='user_data[render]', value='1')
+                        label(for='female_add') N&#x1EEF;
+                    if(data[0].GioiTinh == true)
+                        input#male_add(type='radio', name='user_data[render]', value='0')
+                        label(for='male_add') Nam
+                        input#female_add(type='radio', name='user_data[render]', value='1', checked='checked')
+                        label(for='female_add') N&#x1EEF;
+              .form.ty-control-group
+                .ty-control-label
+                  label.ty-control-group__title(for='ngaysinh') Ng&agrave;y sinh
+                .popup__select.ty-control-value
+                  select.select-date(name='user_data[ngay]')
+                    - for(var x = 1; x <= 31; x++)
+                        if(x == date[0])
+                            option(value= date[0].toString(), selected='selected')= date[0].toString()
+                        else
+                            option(value= x.toString())=x.toString()
+                  select.select-date(name='user_data[thang]')
+                    - for(var x = 1; x <= 12; x++)
+                        if(x == date[1])
+                            option(value= date[1].toString(), selected='selected')= date[1].toString()
+                        else
+                            option(value= x.toString())=x.toString()
+                  select.select-date(name='user_data[nam]')
+                    - for(var x = 1930; x <= dates; x++)
+                        if(x == date[2])
+                            option(value= date[2].toString(), selected='selected')= date[2].toString()
+                        else
+                            option(value= x.toString())=x.toString()
+              h3.ty-subheader
+                | T&agrave;i kho&#x1EA3;n m&#x1EA1;ng x&atilde; h&#x1ED9;i
+              p Ch&#x1EC9; &dstrok;&#x1ECB;nh t&agrave;i kho&#x1EA3;n m&#x1EA1;ng x&atilde; h&#x1ED9;i c&#x1EE7;a b&#x1EA1;n v&agrave; s&#x1EED; d&#x1EE5;ng n&oacute; &dstrok;&#x1EC3; &dstrok;&abreve;ng nh&#x1EAD;p
+              #hybrid_providers.clearfix.ty-hybrid-auth__icon-container
+                .ty-hybrid-auth__icon.ty-float-left &nbsp;
+                .ty-hybrid-auth__icon.ty-float-left
+                  a.cm-link-provider.ty-link-unlink-provider(data-idp='facebook')
+                    i.ty-hybrid-auth__add.ty-icon-plus-circle
+                    img(src='https://nhanvan.vn/design/themes/responsive/media/images/addons/hybrid_auth/icons/flat_32x32/facebook.png', title='Không được liên kết', alt='facebook')
+                .ty-hybrid-auth__icon.ty-float-left
+                  a.cm-link-provider.ty-link-unlink-provider(data-idp='google')
+                    i.ty-hybrid-auth__add.ty-icon-plus-circle
+                    img(src='https://nhanvan.vn/design/themes/responsive/media/images/addons/hybrid_auth/icons/flat_32x32/google.png', title='Không được liên kết', alt='google')
+                // hybrid_providers
+              .ty-profile-field__buttons.buttons-container
+                button#save_profile_but.ty-btn__secondary.ty-btn(type='submit', name='dispatch[profiles.update]') L&#x1B0;u
+                input#shipping_address_reset.ty-profile-field__reset.ty-btn.ty-btn__tertiary(type='reset', name='reset', value='Làm lại')
+                // Inline script moved to the bottom of the page
+              input.cm-no-hide-input(type='hidden', name='security_hash', value='54106fb0882bedc3ee73b3190a79d186')
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4.text(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved

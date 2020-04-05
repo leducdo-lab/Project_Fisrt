@@ -1,0 +1,231 @@
+doctype html
+head
+  title Ch&#x1EC9;nh s&#x1EED;a h&#x1ED3; s&#x1A1; - DTPBook
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8', data-ca-mode='')
+  link(type='text/css', rel='stylesheet', href='/css/thanhvien.css')
+  link(rel='stylesheet', href='/css/footer.css')
+  style.
+    table{
+    border: none;
+    width: 50%;
+    }
+    .box-content-notification {
+    display: inline-block;
+    height: 100%;
+    border-left: 1px solid #ebebeb;
+    padding: 10px 0px 0px 0px;
+    min-height: 515px;
+    width: 100%;
+    margin-top: 30px;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    /* background-image: url(images/nen5.jpg); */
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    .in[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+  style(type='text/css').
+    .cm-noscript {display:none}
+  style(type='text/css').
+    @keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#QXyLtfi-1576316172378{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#m7nXJxr-1576316172380.open{animation : tawkMaxOpen .25s ease!important;}
+style(type='text/css').
+  header{
+  border:1px solid #ccc;
+  background-color:black;
+  color:white;
+  text-align:center;
+  padding-bottom:25px;
+  }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/users', style='font-size: x-large;') DTPBook
+        li(style=' margin-left: -2; border-left-width: 10px; padding-left: 10px;')
+          form(action='/users/search')
+            input.in(type='text', name='q', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='/users') Home
+        li
+          a(href='/users/menu') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='38', height='35', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+#content_general.ty-profile-field.ty-account.form-wrap
+  form.cm-processed-form(name='profile_form', enctype='multipart/form-data', action='/users/', method='post')
+    input#selected_section(type='hidden', value='general', name='selected_section')
+    input#default_card_id(type='hidden', value='', name='default_cc')
+    input(type='hidden', name='profile_id', value='')
+    .row
+      .span16.box-products-white.box-notification
+        .row
+          .span4
+            ul.menu-notification
+              li
+                a(href='/users/UsersTK')
+                  i.icon-user
+                  | Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+              li
+                a.active(href='/')
+                  i.icon-file-text-alt
+                  | Qu&#x1EA3;n l&yacute; &dstrok;&#x1A1;n h&agrave;ng
+              li
+                a(href='/')
+                  i.icon-table
+                  | Nh&#x1EAD;n x&eacute;t c&#x1EE7;a t&ocirc;i
+          .span12
+            .box-content-notification
+              // Inline script moved to the bottom of the page
+              .span12
+                .box-content-notification
+                  h2.title-notification &Dstrok;&#x1A1;n h&agrave;ng c&#x1EE7;a t&ocirc;i
+                  #pagination_contents.ty-pagination-container.cm-pagination-container
+                    table.ty-table.ty-orders-search
+                      thead
+                        tr
+                          th
+                            a.cm-ajax(href='#', data-ca-target-id='pagination_contents')
+                              span M&atilde; &dstrok;&#x1A1;n h&agrave;ng
+                          th
+                            a.cm-ajax(href='#', data-ca-target-id='pagination_contents') Ng&agrave;y mua h&agrave;ng
+                            
+                          th S&#x1EA3;n ph&#x1EA9;m
+                          th
+                            a.cm-ajax(href='#', data-ca-target-id='pagination_contents') T&#x1ED5;ng c&#x1ED9;ng
+                          th
+                            a.cm-ajax(href='#', data-ca-target-id='pagination_contents') Tr&#x1EA1;ng th&aacute;i
+                        
+                      tbody
+                        if DH
+                          -for(var x = 0; x < DH.length; x++)
+                            tr
+                              th
+                                a.cm-ajax(href='#', data-ca-target-id='pagination_contents')= DH[x].MaDonHang.toString()
+                              th
+                                a.cm-ajax(href='#', data-ca-target-id='pagination_contents')= date[x].toString()
+                              th
+                                a.cm-ajax(href='/users/book?book='+DH[x].IDSach.toString(), data-ca-target-id='pagination_contents')= DH[x].TenSach.toString()
+                              th
+                                a.cm-ajax(href='#', data-ca-target-id='pagination_contents')= DH[x].SoLuong.toString()
+                              th
+                                a.cm-ajax(href='#', data-ca-target-id='pagination_contents')= DH[x].TrangThai.toString()
+                        if !DH
+                          tr.ty-table__no-items
+                            td(colspan='7')
+                              p.ty-no-items Kh&ocirc;ng t&igrave;m th&#x1EA5;y &dstrok;&#x1A1;n &dstrok;&#x1EB7;t h&agrave;ng
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4.text(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved

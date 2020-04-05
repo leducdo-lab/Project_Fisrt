@@ -1,0 +1,460 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title= book[0].TenSach.toString() 
+  link(rel='stylesheet', type='text/css', href='/css/sach.css')
+  link(rel='stylesheet', type='text/css', href='/css/sach2.css', media='all')
+  link(rel='stylesheet', type='text/css', href='/css/sach1.css', media='print')
+  link(rel='stylesheet', href='/css/footer.css')
+  style.
+    /* table{
+    border: none;
+    width: 50%;
+    } */
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /* table{
+    border: none;
+    width: 30%;
+    } */
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    input[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+style(type='text/css').
+    header{
+    border:1px solid #ccc;
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding-bottom:27px;
+    }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/', style='font-size: x-large;') DTPBook
+        if user
+          li
+            form(action='/users/search', method='GET')
+              input(type='text', name='q', placeholder='Search..')
+        if !user
+          li
+            form(action='/search', method='GET')
+              input(type='text', name='q', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        if user
+          li
+            a(href='/users') Home
+        if !user
+          li
+            a(href='/home') Home
+        li
+          a(href='/home/menu1?page=1') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        if user
+          li
+            a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: -1px;") T&agrave;i kho&#x1EA3;n
+            ul.sub-menu
+              li
+                a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+              li
+                a(href='/users/repassword') Đổi mật khẩu
+              li
+                a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        if !user
+          li.nav-item.cta
+            a.nav-link(href='/home/login') Login
+        li(style='top:12px;')
+          img(src='/images/gh.png', alt='ảnh.png', width='38', height='39', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/giohang')
+if user
+  form(action='/users/book', method='POST')
+    input(name='id',value=book[0].IDSach.toString(),type='hidden')
+    input(name='gia',value=book[0].Gia.toString(),type='hidden')
+    // begin web product view UI
+    .product-view.kasitoo
+      // begin web UI
+      .product-essential.col-md-9
+        .col-md-5
+          img#image.fhs-p-img(src='/images/'+book[0].IDSach.toString()+'.jpg', alt=book[0].TenSach.toString(), title=book[0].TenSach.toString())
+          .more-views
+            h2#more-views-lightgallery Xem th&ecirc;m
+            .row
+              .lightgallery
+                a#lightgallery-item1.include-in-gallery(href='S001.jpg', title=book[0].TenSach.toString())
+                  img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'.jpg', alt='image')
+                if book[0].SoAnh > 6
+                  -for(x = 2; x <= 6; x++)
+                    a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                if book[0].SoAnh > 1 && book[0].SoAnh < 6
+                  -for(x = 2; x <= book[0].SoAnh; x++)
+                    a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                if book[0].SoAnh == 1
+                  a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/1.jpg', alt='image')
+        .col-md-7
+          h1#product= book[0].TenSach.toString()
+            
+          .view-rate.row(style='margin: 0px;vertical-align: middle;')
+            .col-md-6(style='padding: 0px;')
+              .ratings
+                .rating-content
+                  table
+                    tbody
+                      tr
+                        td
+                          a(target='_blank', href='https://www.goodreads.com/search?utf8=%E2%9C%93&q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1')
+                            .rating-box
+                              .rating(style='width:79.2%')
+                        td.review-position
+                          a(target='_blank', href='https://www.goodreads.com/search?utf8=%E2%9C%93&q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1')
+                            span (324749)
+                      tr
+                        td
+                          a(href='#customer-reviews')
+                            .rating-box
+                              .rating(style='width:100%')
+                        td.review-position
+                          p.rating-links
+                            a(href='#customer-reviews') (6)
+                .rating-content
+                  table
+                    tbody
+                      tr
+                        td.review-lable(colspan='3')
+                          a(href='#review-form') Th&ecirc;m nh&#x1EAD;n x&eacute;t c&#x1EE7;a b&#x1EA1;n
+            .col-md-6
+              div
+                .youama-ajaxlogin-loader(style='display: none;')
+                #alert-vote-product.youama-noti-window-sucess
+                  .youama-window-outside
+                    span.close &times;
+                    .youama-window-inside
+                      .youama-window-title
+                        h3.error
+                div
+                  #vote-product(style='font-family: Helvetica, Arial, sans-serif;')
+                    div(style='float: right')
+                      a#vote-product-button.btn-vote-inactive
+                        i#vote-product-icon.fa.fa-star.btn-vote-title(style='margin-right: 5px;color:#ffffff;')
+                        span.btn-vote-title(style='color:#ffffff;') 0 B&igrave;nh ch&#x1ECD;n
+          .col-md-12.price-block
+            #catalog-product-details-price.col-md-6.price-block-left(style='')
+              .price-box
+                p.special-price
+                  span.price-label Special Price
+                  span#product-price-161252.price= book[0].Gia.toString()
+              //-   p.old-price
+              //-     span.price-label Regular Price:
+              //-     span#old-price-161252.price= book[0].Gia.toString()
+            #catalog-product-details-discount.col-md-6.price-block-right(style='')
+              //span.discount-percent -35%
+            .col-md-12.add-to-box.add-to-box2
+              span
+              .add-to-cart.col-md-12.col-sm-12.col-sms-12
+                label(for='qty') S&#x1ED1; l&#x1B0;&#x1EE3;ng:
+                input#qty.input-text.qty(type='number', name='slg', maxlength='12', value='1', title='SL')
+              
+                button.button.btn-cart-view(type='submit',title='Chọn mua')
+                  span
+                    span
+                      i.fa.fa-shopping-cart
+                      | Ch&#x1ECD;n mua
+            .col-md-12.additional-list
+              .col-md-4
+              
+                ul.add-to-links
+                  li
+                    a(href='https://www.fahasa.com/customer/account/login/', onclick='return false;', title='Yêu thích')
+                      i.fa.fa-heart
+                      | Y&ecirc;u th&iacute;ch
+                // ESI END DUMMY COMMENT []
+              .col-md-7.add-review-link
+                a(href='#review-form')
+                  i.fa.fa-edit
+                  | Th&ecirc;m nh&#x1EAD;n x&eacute;t c&#x1EE7;a b&#x1EA1;n
+            .col-md-12.short-description
+              //- span(style='font-weight: bold; color: black; font-size: 13px; font-family: Roboto,Helvetica,Arial,sans-serif')
+              //-   | Ph&iacute;a T&acirc;y Kh&ocirc;ng C&oacute; G&igrave; L&#x1EA1;.
+              //-   | Th&#x1EBF; chi&#x1EBF;n th&#x1EE9; nh&#x1EA5;t n&#x1ED5; ra,
+              //- |  nh&#x1EEF;ng ch&agrave;ng trai &dstrok;ang ng&#x1ED3;i tr&ecirc;n gh&#x1EBF; nh&agrave; tr&#x1B0;&#x1EDD;ng b&#x1ECB; chuy&#x1EC3;n th&#x1EB3;ng ra m&#x1EB7;t tr&#x1EAD;n. T&#x1EA1;i &dstrok;&acirc;y s&#x1EF1; kh&#x1ED1;c li&#x1EC7;t c&#x1EE7;a chi&#x1EBF;n tranh &dstrok;&atilde; khi&#x1EBF;n h&#x1ECD; t&ecirc; d&#x1EA1;i khi bom &dstrok;&#x1EA1;n kh&ocirc;ng ch&#x1EC9; t&#x1B0;&#x1EDB;c &dstrok;i nh&#x1EEF;ng ph&#x1EA7;n c&#x1A1; th&#x1EC3; m&agrave; c&ograve;n c&#x1EA3; t&acirc;m h&#x1ED3;n. Th&#x1EBF; n&ecirc;n ch&#x1B0;a k&#x1ECB;p tr&#x1B0;&#x1EDF;ng th&agrave;nh h&#x1ECD; &dstrok;&atilde; tr&#x1EDF; n&ecirc;n gi&agrave; nua, b&#x1EDF;i g&#x1EA7;n v&#x1EDB;i c&aacute;i ch&#x1EBF;t h&#x1A1;n l&agrave; s&#x1EF1; s&#x1ED1;ng. H&#x1ECD; c&utilde;ng ...                       
+              //- a.xem-chi-tiet(href='sach2.html') Xem th&ecirc;m
+        ul#fhs-tab-extra-info.product-tabs
+          li#product_tabs_additional_person.active.first
+            a(href='javascript:void(0)') Th&ocirc;ng tin s&#x1EA3;n ph&#x1EA9;m
+        .content
+          #product-additional-description.product-additional-description
+            #product_tabs_additional_contents.product-tabs-content(style='')
+              h2 Th&ocirc;ng Tin Chi Ti&#x1EBF;t
+              table#product-attribute-specs-table.data-table.table-striped
+                colgroup
+                  col(width='25%')
+                  col
+                tbody
+                  tr.even
+                  tr.odd
+                    th.label T&aacute;c gi&#x1EA3;
+                    td.data.last= book[0].TacGia.toString()
+                      //- | Erich Maria Remarque
+                  tr.odd
+                    th.label NXB
+                    td.data.last= book[0].NhaXB.toString()
+                      //- | NXB V&abreve;n H&#x1ECD;c
+                  tr.odd
+                    th.label N&abreve;m XB
+                    td.data.last= book[0].NgayXB.toString()
+                      //- | 2017
+              script(type='text/javascript').
+                decorateTable('product-attribute-specs-table')
+            #product_tabs_description_contents.product-tabs-content(style='display: none; height: 432px; min-height: 400px;')
+              h2 Gi&#x1EDB;i Thi&#x1EC7;u N&#x1ED9;i Dung S&#x1EA3;n Ph&#x1EA9;m
+              #desc_content.std(style='overflow: auto; height: 350px;')
+                p(style='text-align: justify;')= book[0].MoTa.toString()
+            
+if !user
+  form#product_addtocart_form(action='/book', method='POST')
+    input(name='id',value=book[0].IDSach.toString(),type='hidden')
+    input(name='gia',value=book[0].Gia.toString(),type='hidden')
+    // begin web product view UI
+    .product-view.kasitoo
+      // begin web UI
+      .product-essential.col-md-9
+        .col-md-5
+          img#image.fhs-p-img(src='/images/'+book[0].IDSach.toString()+'.jpg', alt=book[0].TenSach.toString(), title=book[0].TenSach.toString())
+          .more-views
+            h2#more-views-lightgallery Xem th&ecirc;m
+            .row
+              .lightgallery
+                a#lightgallery-item1.include-in-gallery(href='S001.jpg', title=book[0].TenSach.toString())
+                  img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'.jpg', alt='image')
+                -for(x = 1; x <= 6; x++)
+                  a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                    img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                
+                
+        .col-md-7
+          h1#product= book[0].TenSach.toString()
+            
+          .view-rate.row(style='margin: 0px;vertical-align: middle;')
+            .col-md-6(style='padding: 0px;')
+              .ratings
+                .rating-content
+                  table
+                    tbody
+                      tr
+                        td
+                          a(target='_blank', href='https://www.goodreads.com/search?utf8=%E2%9C%93&q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1')
+                            .rating-box
+                              .rating(style='width:79.2%')
+                        td.review-position
+                          a(target='_blank', href='https://www.goodreads.com/search?utf8=%E2%9C%93&q=Ph%C3%ADa+T%C3%A2y+Kh%C3%B4ng+C%C3%B3+G%C3%AC+L%E1%BA%A1')
+                            span (324749)
+                      tr
+                        td
+                          a(href='#customer-reviews')
+                            .rating-box
+                              .rating(style='width:100%')
+                        td.review-position
+                          p.rating-links
+                            a(href='#customer-reviews') (6)
+                .rating-content
+                  table
+                    tbody
+                      tr
+                        td.review-lable(colspan='3')
+                          a(href='#review-form') Th&ecirc;m nh&#x1EAD;n x&eacute;t c&#x1EE7;a b&#x1EA1;n
+            .col-md-6
+              div
+                .youama-ajaxlogin-loader(style='display: none;')
+                #alert-vote-product.youama-noti-window-sucess
+                  .youama-window-outside
+                    span.close &times;
+                    .youama-window-inside
+                      .youama-window-title
+                        h3.error
+                div
+                  #vote-product(style='font-family: Helvetica, Arial, sans-serif;')
+                    div(style='float: right')
+                      a#vote-product-button.btn-vote-inactive
+                        i#vote-product-icon.fa.fa-star.btn-vote-title(style='margin-right: 5px;color:#ffffff;')
+                        span.btn-vote-title(style='color:#ffffff;') 0 B&igrave;nh ch&#x1ECD;n
+          .col-md-12.price-block
+            #catalog-product-details-price.col-md-6.price-block-left(style='')
+              .price-box
+                p.special-price
+                  span.price-label Special Price
+                  span#product-price-161252.price= book[0].Gia.toString()
+              //-   p.old-price
+              //-     span.price-label Regular Price:
+              //-     span#old-price-161252.price= book[0].Gia.toString()
+            #catalog-product-details-discount.col-md-6.price-block-right(style='')
+              //span.discount-percent -35%
+            .col-md-12.add-to-box.add-to-box2
+              span
+              .add-to-cart.col-md-12.col-sm-12.col-sms-12
+                label(for='qty') S&#x1ED1; l&#x1B0;&#x1EE3;ng:
+                input#qty.input-text.qty(type='number', name='slg', maxlength='12', value='1', title='SL')
+              
+                button.button.btn-cart-view(type='submit',title='Chọn mua')
+                  span
+                    span
+                      i.fa.fa-shopping-cart
+                      | Ch&#x1ECD;n mua
+            .col-md-12.additional-list
+              .col-md-4
+              
+                ul.add-to-links
+                  li
+                    a(href='https://www.fahasa.com/customer/account/login/', onclick='return false;', title='Yêu thích')
+                      i.fa.fa-heart
+                      | Y&ecirc;u th&iacute;ch
+                // ESI END DUMMY COMMENT []
+              .col-md-7.add-review-link
+                a(href='#review-form')
+                  i.fa.fa-edit
+                  | Th&ecirc;m nh&#x1EAD;n x&eacute;t c&#x1EE7;a b&#x1EA1;n
+            .col-md-12.short-description
+              //- span(style='font-weight: bold; color: black; font-size: 13px; font-family: Roboto,Helvetica,Arial,sans-serif')
+              //-   | Ph&iacute;a T&acirc;y Kh&ocirc;ng C&oacute; G&igrave; L&#x1EA1;.
+              //-   | Th&#x1EBF; chi&#x1EBF;n th&#x1EE9; nh&#x1EA5;t n&#x1ED5; ra,
+              //- |  nh&#x1EEF;ng ch&agrave;ng trai &dstrok;ang ng&#x1ED3;i tr&ecirc;n gh&#x1EBF; nh&agrave; tr&#x1B0;&#x1EDD;ng b&#x1ECB; chuy&#x1EC3;n th&#x1EB3;ng ra m&#x1EB7;t tr&#x1EAD;n. T&#x1EA1;i &dstrok;&acirc;y s&#x1EF1; kh&#x1ED1;c li&#x1EC7;t c&#x1EE7;a chi&#x1EBF;n tranh &dstrok;&atilde; khi&#x1EBF;n h&#x1ECD; t&ecirc; d&#x1EA1;i khi bom &dstrok;&#x1EA1;n kh&ocirc;ng ch&#x1EC9; t&#x1B0;&#x1EDB;c &dstrok;i nh&#x1EEF;ng ph&#x1EA7;n c&#x1A1; th&#x1EC3; m&agrave; c&ograve;n c&#x1EA3; t&acirc;m h&#x1ED3;n. Th&#x1EBF; n&ecirc;n ch&#x1B0;a k&#x1ECB;p tr&#x1B0;&#x1EDF;ng th&agrave;nh h&#x1ECD; &dstrok;&atilde; tr&#x1EDF; n&ecirc;n gi&agrave; nua, b&#x1EDF;i g&#x1EA7;n v&#x1EDB;i c&aacute;i ch&#x1EBF;t h&#x1A1;n l&agrave; s&#x1EF1; s&#x1ED1;ng. H&#x1ECD; c&utilde;ng ...                       
+              //- a.xem-chi-tiet(href='sach2.html') Xem th&ecirc;m
+        ul#fhs-tab-extra-info.product-tabs
+          li#product_tabs_additional_person.active.first
+            a(href='javascript:void(0)') Th&ocirc;ng tin s&#x1EA3;n ph&#x1EA9;m
+        .content
+          #product-additional-description.product-additional-description
+            #product_tabs_additional_contents.product-tabs-content(style='')
+              h2 Th&ocirc;ng Tin Chi Ti&#x1EBF;t
+              table#product-attribute-specs-table.data-table.table-striped
+                colgroup
+                  col(width='25%')
+                  col
+                tbody
+                  tr.even
+                  tr.odd
+                    th.label T&aacute;c gi&#x1EA3;
+                    td.data.last= book[0].TacGia.toString()
+                      //- | Erich Maria Remarque
+                  tr.odd
+                    th.label NXB
+                    td.data.last= book[0].NhaXB.toString()
+                      //- | NXB V&abreve;n H&#x1ECD;c
+                  tr.odd
+                    th.label N&abreve;m XB
+                    td.data.last= book[0].NgayXB.toString()
+                      //- | 2017
+              script(type='text/javascript').
+                decorateTable('product-attribute-specs-table')
+            #product_tabs_description_contents.product-tabs-content(style='display: none; height: 432px; min-height: 400px;')
+              h2 Gi&#x1EDB;i Thi&#x1EC7;u N&#x1ED9;i Dung S&#x1EA3;n Ph&#x1EA9;m
+              #desc_content.std(style='overflow: auto; height: 350px;')
+                p(style='text-align: justify;')= book[0].MoTa.toString()
+            
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table(style='border: none; width: 50%;')
+        tr
+          td(width='40%')
+            .copyright
+              h4(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+    br
+    br
+    div(style='text-align: center; color: #999999;;') &copy;  2014 All Rights Reserved

@@ -18,6 +18,59 @@ head
   link(rel='stylesheet' href='/css/icomoon.css')
   link(rel='stylesheet' href='/css/style.css')
   link(rel='stylesheet' href='/css/search1.css')
+  link(rel='stylesheet', href='/css/footer.css')
+  style.
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    /* background: #1F568B; */
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 120px;
+    height: 47px;
+    line-height: 30px;
+    line-break: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 1 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
 .py-1.bg-black.top
   .container
     .row.no-gutters.d-flex.align-items-start.align-items-center.px-md-0
@@ -39,32 +92,36 @@ head
 nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-navbar-light
   .container
     a.navbar-brand(href='/home') DTPBook
-    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#ftco-nav' aria-controls='ftco-nav' aria-expanded='false' aria-label='Toggle navigation')
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#ftco-nav', aria-controls='ftco-nav', aria-expanded='false', aria-label='Toggle navigation')
       span.oi.oi-menu
       |  Menu
-    #ftco-nav.collapse.navbar-collapse
-      form(action="/home/search",method="GET")
-        input(type='text' name='q' placeholder='Search..')
+    #menu.collapse.navbar-collapse
+      form(action='/home/search', method='GET')
+        input(type='text', name='q', placeholder='Search..')
       ul.navbar-nav.ml-auto
         li.nav-item.active
           a.nav-link(href='/home') Home
         li.nav-item
-          a.nav-link(href='/home/menu') Menu
-        if !cookie
+          a.nav-link(href='/home/new') New
+        li.nav-item
+          a(style=" padding-right: 15px; margin-right: 10px;").nav-link(href='/home/menu1?page=1') Menu
+        if !user
           li.nav-item.cta
             a.nav-link(href='/home/login') Login
-        else
-          li.nav-item
-          a.nav-link(href='#') T&agrave;i kho&#x1EA3;n
-          ul.sub-menu
-            li
-              a(href='#') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
-            // <li><a href="#"><a href="https://thachpham.com/category/seo" data-wpel-link="internal">SEO</a></a></li>
-            li
-              a(style='color: chocolate;', href='/home') Tho&aacute;t
-        // <li><div class="nav">(Thoát)</div></li>
+        if user
+          li
+            a(href='#') T&agrave;i kho&#x1EA3;n
+            ul.sub-menu
+              li
+                a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+              li
+                a(href='/users/repassword') Đổi mật khẩu
+              li
+                a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
         li
-          img(src='/images/gh.png' alt='ảnh.png' width='40' height='40')
+          img(src='/images/gh.png', alt='ảnh.png', width='38', height='35', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
 // END nav
 section.home-slider.owl-carousel.js-fullheight
   .slider-item.js-fullheight(style='background-image: url(/images/sach1.jpg);')
@@ -94,183 +151,342 @@ section.ftco-section.ftco-no-pt.ftco-no-pb
       .col-md-12
         .featured
           .row
-            .col-md-3
-              .featured-menus.ftco-animate
-                .menu-img.img(style='background-image: url(/images/S002.jpg);')
-                .text.text-center
-                  h3 Cang Gi&#x1EA3; Kim Thu&#x1EAD;t S&#x1B0;
-                  p
-                    span Hiromu Arakawa
-            .col-md-3
-              .featured-menus.ftco-animate
-                .menu-img.img(style='background-image: url(/images/S019.jpg);')
-                .text.text-center
-                  h3 CHO T&Ocirc;I XIN 1 V&Eacute; &Dstrok;I TU&#x1ED4;I TH&#x1A0;
-                  p
-                    span Nguy&#x1EC5;n Nh&#x1EAD;t &Aacute;nh
-            .col-md-3
-              .featured-menus.ftco-animate
-                .menu-img.img(style='background-image: url(/images/S031.jpg);')
-                .text.text-center
-                  h3 S&#x1EF0; IM L&#x1EB6;NG C&#x1EE6;A B&#x1EA6;Y C&#x1EEA;U
-                  p
-                    span Thomas Harris
-            .col-md-3
-              .featured-menus.ftco-animate
-                .menu-img.img(style='background-image: url(/images/S009.jpg);')
-                .text.text-center
-                  h3 &Dstrok;&#x1ECB;nh M&#x1EC7;nh Chi&#x1EBF;n Tranh
-                  p
-                    span Graham Allison
-section.ftco-section.ftco-wrap-about
-  .container
-    .row
-      .col-md-7.d-flex
-        .img.img-1.mr-md-2(style='background-image: url(/images/about1.jpg);')
-        .img.img-2.ml-md-2(style='background-image: url(/images/about2.jpg);')
-      .col-md-5.wrap-about.pt-5.pt-md-5.pb-md-3.ftco-animate
-        .heading-section.mb-4.my-5.my-md-0
-          span.subheading About
-          h2.mb-4 DTPBook
-        p
-          | S&aacute;ch l&agrave; m&#x1ED9;t c&aacute;nh c&#x1EED;a &dstrok;&#x1B0;a con ng&#x1B0;&#x1EDD;i &dstrok;i t&#x1EDB;i m&#x1ECD;i n&#x1A1;i , h&#x1B0;&#x1EDB;ng ch&uacute;ng ta &dstrok;&#x1EBF;n v&#x1EDB;i c&aacute;i &dstrok;&#x1EB9;p . Vi&#x1EC7;c &dstrok;&#x1ECD;c s&aacute;ch kh&ocirc;ng ch&#x1EC9; l&agrave; m&oacute;n &abreve;n tinh th&#x1EA7;y m&agrave; c&ograve;n l&agrave; ngu&#x1ED3;n s&#x1ED1;ng c&#x1EE7;a nhi&#x1EC1;u ng&#x1B0;&#x1EDD;i. Ch&uacute;ng t&ocirc;i h&acirc;n h&#x1EA1;nh l&agrave; ng&#x1B0;&#x1EDD;i &dstrok;em m&oacute;n &abreve;n &dstrok;&#x1EA5;y &dstrok;&#x1EBF;n cho b&#x1EA1;n.
-        pc.time
-          span
-            | Mon - Fri 
-            strong 8 AM - 11 PM
-          span
-            a(href='#') + 1-978-123-4567
-          p
-section#section-counter.ftco-section.ftco-counter.img.ftco-no-pt
-  .container
-    .row.d-md-flex
-      .col-md-9
-        .row.d-md-flex.align-items-center
-          .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
-            .block-18
-              .text
-                strong.number(data-number='18') 0
-                span Years of Experienced
-          .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
-            .block-18
-              .text
-                strong.number(data-number='100') 0
-                span Menus/Dish
-          .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
-            .block-18
-              .text
-                strong.number(data-number='50') 0
-                span Staffs
-          .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
-            .block-18
-              .text
-                strong.number(data-number='15000') 0
-                span Happy Customers
-      .col-md-3.text-center.text-md-left
-        p
-section.ftco-section
-  .container
-    .row.no-gutters.justify-content-center.mb-5.pb-2
-      .col-md-12.text-center.heading-section.ftco-animate
-        span.subheading Prominent
-        h2.mb-4 Our Book
-    .row.no-gutters.d-flex.align-items-stretch
-      - for (var x = 0; x < data.length; x+=2)
-          .col-md-12.col-lg-6.d-flex.align-self-stretch
-            .menus.d-sm-flex.ftco-animate.align-items-stretch
-              .menu-img.img(style='background-image: url(/images/'+data[x].IDSach.toString()+'.jpg);background-size: 70%;')
-              .text.d-flex.align-items-center
-                div
-                  .d-flex
-                    .one-half
-                      h3= data[x].TenSach.toString()
-                    .one-forth
-                      span.price= data[x].Gia.toString()+'$'
-                  p
-                    span= data[x].TacGia.toString()
-                  p
-                    a.btn.btn-primary(href='#') Buy now
-      - for (var x = 1; x < data.length; x+=2)
-          .col-md-12.col-lg-6.d-flex.align-self-stretch
-            .menus.d-sm-flex.ftco-animate.align-items-stretch
-              .menu-img.img(style='background-image: url(/images/'+data[x].IDSach.toString()+'.jpg);background-size: 70%;')
-              .text.d-flex.align-items-center
-                div
-                  .d-flex
-                    .one-half
-                      h3= data[x].TenSach.toString()
-                    .one-forth
-                      span.price= data[x].Gia.toString()+'$'
-                  p
-                    span= data[x].TacGia.toString()
-                  p
-                    a.btn.btn-primary(href='#') Buy now  
-footer.ftco-footer.ftco-bg-dark.ftco-section
-  .container
-    .row.mb-5
-      .col-md-6.col-lg-3
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2 DTPBook
-          p &Dstrok;&#x1ECB;a ch&#x1EC9; 
-          ul.ftco-footer-social.list-unstyled.float-md-left.float-lft.mt-3
-            li.ftco-animate
-              a(href='#')
-                span.icon-twitter
-            li.ftco-animate
-              a(href='#')
-                span.icon-facebook
-            li.ftco-animate
-              a(href='#')
-                span.icon-instagram
-      .col-md-6.col-lg-3
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2 Chi Nh&aacute;nh 
-          ul.list-unstyled.open-hours
-            li.d-flex
-              span Hai B&agrave; Tr&#x1B0;ng
-              span S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t 
-      .col-md-6.col-lg-3
-        .ftco-footer-widget.mb-4
-          h2.ftco-heading-2 Instagram
-          .thumb.d-sm-flex
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S001.jpg);')
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S002.jpg);')
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S003.jpg);')
-          .thumb.d-flex
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S004.jpg);')
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S005.jpg);')
-            a.thumb-menu.img(href='#' style='background-image: url(/images/S006.jpg);')
-    .row
-      .col-md-12.text-center
-        p
-          // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
-          | Copyright &copy;
-          script.
-            document.write(new Date().getFullYear());
-          |  All rights reserved | This template is made with 
-          i.icon-heart(aria-hidden='true')
-          |  by 
-          a(href='https://colorlib.com' target='_blank') Colorlib
-          // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
-// loader
-#ftco-loader.show.fullscreen
-  svg.circular(width='48px' height='48px')
-    circle.path-bg(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke='#eeeeee')
-    circle.path(cx='24' cy='24' r='22' fill='none' stroke-width='4' stroke-miterlimit='10' stroke='#F96D00')
-script(src='js/jquery.min.js')
-script(src='js/jquery-migrate-3.0.1.min.js')
-script(src='js/popper.min.js')
-script(src='js/bootstrap.min.js')
-script(src='js/jquery.easing.1.3.js')
-script(src='js/jquery.waypoints.min.js')
-script(src='js/jquery.stellar.min.js')
-script(src='js/owl.carousel.min.js')
-script(src='js/jquery.magnific-popup.min.js')
-script(src='js/aos.js')
-script(src='js/jquery.animateNumber.min.js')
-script(src='js/bootstrap-datepicker.js')
-script(src='js/jquery.timepicker.min.js')
-script(src='js/scrollax.min.js')
+            if !data
+              if datas
+                - for(var x = 0; x < datas.length; x++)
+                  .col-md-3
+                    .featured-menus.ftco-animate
+                      .menu-img.img(style='background-image: url(/images/'+ datas[x].IDSach.toString() +'.jpg);')
+                      .text.text-center
+                        h3= datas[x].TenSach.toString()
+                        p
+                          span= datas[x].TacGia.toString()
+              else
+                .col-md-3
+                  .featured-menus.ftco-animate
+                    .menu-img.img(style='background-image: url(/images/S002.jpg);')
+                    .text.text-center
+                      h3 Cang Giả Kim Thuật Sư
+                      p
+                        span Hiromu Arakawa
+                .col-md-3
+                  .featured-menus.ftco-animate
+                    .menu-img.img(style='background-image: url(/images/S019.jpg);')
+                    .text.text-center
+                      h3 CHO T&Ocirc;I XIN 1 V&Eacute; &Dstrok;I TU&#x1ED4;I TH&#x1A0;
+                      p
+                        span Nguy&#x1EC5;n Nh&#x1EAD;t &Aacute;nh
+                .col-md-3
+                  .featured-menus.ftco-animate
+                    .menu-img.img(style='background-image: url(/images/S031.jpg);')
+                    .text.text-center
+                      h3 S&#x1EF0; IM L&#x1EB6;NG C&#x1EE6;A B&#x1EA6;Y C&#x1EEA;U
+                      p
+                        span Thomas Harris
+                .col-md-3
+                  .featured-menus.ftco-animate
+                    .menu-img.img(style='background-image: url(/images/S009.jpg);')
+                    .text.text-center
+                      h3 &Dstrok;&#x1ECB;nh M&#x1EC7;nh Chi&#x1EBF;n Tranh
+                      p
+                        span Graham Allison
+  if !errorSearch
+    if !dataSearch
+      section.ftco-section.ftco-wrap-about
+        .container
+          .row
+            .col-md-7.d-flex
+              .img.img-1.mr-md-2(style='background-image: url(/images/about1.jpg);')
+              .img.img-2.ml-md-2(style='background-image: url(/images/about2.jpg);')
+            .col-md-5.wrap-about.pt-5.pt-md-5.pb-md-3.ftco-animate
+              .heading-section.mb-4.my-5.my-md-0
+                span.subheading About
+                h2.mb-4 DTPBook
+              p
+                | S&aacute;ch l&agrave; m&#x1ED9;t c&aacute;nh c&#x1EED;a &dstrok;&#x1B0;a con ng&#x1B0;&#x1EDD;i &dstrok;i t&#x1EDB;i m&#x1ECD;i n&#x1A1;i , h&#x1B0;&#x1EDB;ng ch&uacute;ng ta &dstrok;&#x1EBF;n v&#x1EDB;i c&aacute;i &dstrok;&#x1EB9;p . Vi&#x1EC7;c &dstrok;&#x1ECD;c s&aacute;ch kh&ocirc;ng ch&#x1EC9; l&agrave; m&oacute;n &abreve;n tinh th&#x1EA7;y m&agrave; c&ograve;n l&agrave; ngu&#x1ED3;n s&#x1ED1;ng c&#x1EE7;a nhi&#x1EC1;u ng&#x1B0;&#x1EDD;i. Ch&uacute;ng t&ocirc;i h&acirc;n h&#x1EA1;nh l&agrave; ng&#x1B0;&#x1EDD;i &dstrok;em m&oacute;n &abreve;n &dstrok;&#x1EA5;y &dstrok;&#x1EBF;n cho b&#x1EA1;n.
+              pc.time
+                span
+                  | Mon - Fri 
+                  strong 8 AM - 11 PM
+                span
+                  a(href='#') + 1-978-123-4567
+                p
+      section#section-counter.ftco-section.ftco-counter.img.ftco-no-pt
+        .container
+          .row.d-md-flex
+            .col-md-9
+              .row.d-md-flex.align-items-center
+                .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
+                  .block-18
+                    .text
+                      strong.number(data-number='18') 0
+                      span Years of Experienced
+                .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
+                  .block-18
+                    .text
+                      strong.number(data-number='100') 0
+                      span Menus/Dish
+                .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
+                  .block-18
+                    .text
+                      strong.number(data-number='50') 0
+                      span Staffs
+                .col-md-6.col-lg-3.mb-4.mb-lg-0.d-flex.justify-content-center.counter-wrap.ftco-animate
+                  .block-18
+                    .text
+                      strong.number(data-number='15000') 0
+                      span Happy Customers
+            .col-md-3.text-center.text-md-left
+              p
+      if data
+        section.ftco-section
+          .container
+            .row.no-gutters.justify-content-center.mb-5.pb-2
+              .col-md-12.text-center.heading-section.ftco-animate
+                span.subheading Prominent
+                h2.mb-4 New Book
+            .row.no-gutters.d-flex.align-items-stretch
+              - for (var x = 0; x < data.length; x+=2)
+                .col-md-12.col-lg-6.d-flex.align-self-stretch
+                  .menus.d-sm-flex.ftco-animate.align-items-stretch
+                    .menu-img.img(style='background-image: url(/images/'+data[x].IDSach.toString()+'.jpg);background-size: 60%;')
+                    .text.d-flex.align-items-center
+                      div
+                        .d-flex
+                          .one-half
+                            h3= data[x].TenSach.toString()
+                          .one-forth
+                            span.price= data[x].Gia.toString()+'$'
+                        p
+                          span= data[x].TacGia.toString()
+                        p
+                          a.btn.btn-primary(href='/home/book?book='+data[x].IDSach.toString()) Buy now
+              - for (var x = 1; x < data.length; x+=2)
+                .col-md-12.col-lg-6.d-flex.align-self-stretch
+                  .menus.d-sm-flex.ftco-animate.align-items-stretch
+                    .menu-img.img(style='background-image: url(/images/'+data[x].IDSach.toString()+'.jpg);background-size: 60%;')
+                    .text.d-flex.align-items-center
+                      div
+                        .d-flex
+                          .one-half
+                            h3= data[x].TenSach.toString()
+                          .one-forth
+                            span.price= data[x].Gia.toString()+'$'
+                        p
+                          span= data[x].TacGia.toString()
+                        p
+                          a.btn.btn-primary(href='/home/book?book='+data[x].IDSach.toString()) Buy now
+            br
+          nav(aria-label='Page navigation example')
+            ul.pagination.justify-content-end
+              li.page-item
+                a.page-link(href='/home/new?page='+(page-1).toString(), aria-label='Previous')
+                  span(aria-hidden='true') &laquo;
+              if page == 1
+                li.page-item.active
+                  a.page-link(href='/home/new?page=1') 1
+              else
+                li.page-item
+                  a.page-link(href='/home/new?page=1') 1
+              if page == 2
+                li.page-item.active
+                  a.page-link(href='/home/new?page=2') 2
+              else
+                li.page-item
+                  a.page-link(href='/home/new?page=2') 2
+              li.page-item
+                a.page-link(href='/home/new?page='+(page+1).toString(), aria-label='Next')
+                  span(aria-hidden='true') &raquo;
+
+      else
+        section.ftco-section
+          .container
+            .row.no-gutters.justify-content-center.mb-5.pb-2
+              .col-md-12.text-center.heading-section.ftco-animate
+                span.subheading Prominent
+                h2.mb-4 Our Book
+            .row.no-gutters.d-flex.align-items-stretch
+              .col-md-12.col-lg-6.d-flex.align-self-stretch
+                .menus.d-sm-flex.ftco-animate.align-items-stretch
+                  .menu-img.img(style='background-image: url(/images/S002.jpg); background-size: 60%;')
+                  .text.d-flex.align-items-center
+                    div
+                      .d-flex
+                        .one-half
+                          h3 Cang Giả Kim Thuật Sư 
+                        .one-forth
+                          span.price $69000
+                      p
+                        span Hiromu Arakawa
+                      p
+                        a.btn.btn-primary(href='#') Buy now
+              .col-md-12.col-lg-6.d-flex.align-self-stretch
+                .menus.d-sm-flex.ftco-animate.align-items-stretch
+                  .menu-img.img(style='background-image: url(/images/S019.jpg); background-size: 60%;')
+                  .text.d-flex.align-items-center
+                    div
+                      .d-flex
+                        .one-half
+                          h3 CHO T&Ocirc;I XIN 1 V&Eacute; &Dstrok;I TU&#x1ED4;I TH&#x1A0;
+                        .one-forth
+                          span.price $80000
+                      p
+                        span Nguy&#x1EC5;n Nh&#x1EAD;t &Aacute;nh
+                      p
+                        a.btn.btn-primary(href='#') Buy now
+              .col-md-12.col-lg-6.d-flex.align-self-stretch
+                .menus.d-sm-flex.ftco-animate.align-items-stretch
+                  .menu-img.img(style='background-image: url(/images/S031.jpg); background-size: 55%;')
+                  .text.d-flex.align-items-center
+                    div
+                      .d-flex
+                        .one-half
+                          h3 S&#x1EF0; IM L&#x1EB6;NG C&#x1EE6;A B&#x1EA6;Y C&#x1EEA;U
+                        .one-forth
+                          span.price $115000
+                      p
+                        span Thomas Harris
+                      p
+                        a.btn.btn-primary(href='#') Buy now
+              .col-md-12.col-lg-6.d-flex.align-self-stretch
+                .menus.d-sm-flex.ftco-animate.align-items-stretch
+                  .menu-img.img(style='background-image: url(/images/S009.jpg); background-size: 60%;')
+                  .text.d-flex.align-items-center
+                    div
+                      .d-flex
+                        .one-half
+                          h3 &Dstrok;&#x1ECB;nh M&#x1EC7;nh Chi&#x1EBF;n Tranh
+                        .one-forth
+                          span.price $246000
+                      p
+                        span Graham Allison
+                      p
+                        a.btn.btn-primary(href='#') Buy now
+              .col-md-12.col-lg-6.d-flex.align-self-stretch
+                .menus.d-sm-flex.ftco-animate.align-items-stretch
+                  .menu-img.img(style='background-image: url(/images/S010.jpg); background-size: 50%;')
+                  .text.d-flex.align-items-center
+                    div
+                      .d-flex
+                        .one-half
+                          h3 Bird Box
+                        .one-forth
+                          span.price $98000
+                      p
+                        span Josh Malerman
+                      p
+                        a.btn.btn-primary(href='#') Buy now
+  if dataSearch
+    section.ftco-section
+      .container
+        .row.no-gutters.justify-content-center.mb-5.pb-2
+          .col-md-12.text-center.heading-section.ftco-animate
+            span.subheading Prominent
+            h2.mb-4 Out Book
+        .row.no-gutters.d-flex.align-items-stretch
+          - for (var x = 0; x < dataSearch.length; x+=2)
+            .col-md-12.col-lg-6.d-flex.align-self-stretch
+              .menus.d-sm-flex.ftco-animate.align-items-stretch
+                .menu-img.img(style='background-image: url(/images/'+dataSearch[x].IDSach.toString()+'.jpg);background-size: 60%;')
+                .text.d-flex.align-items-center
+                  div
+                    .d-flex
+                      .one-half
+                        h3= dataSearch[x].TenSach.toString()
+                      .one-forth
+                        span.price= dataSearch[x].Gia.toString()+'$'
+                    p
+                      span= dataSearch[x].TacGia.toString()
+                    p
+                      a.btn.btn-primary(href='/book?book='+dataSearch[x].IDSach.toString()) Buy now
+          - for (var x = 1; x < dataSearch.length; x+=2)
+            .col-md-12.col-lg-6.d-flex.align-self-stretch
+              .menus.d-sm-flex.ftco-animate.align-items-stretch
+                .menu-img.img(style='background-image: url(/images/'+dataSearch[x].IDSach.toString()+'.jpg);background-size: 60%;')
+                .text.d-flex.align-items-center
+                  div
+                    .d-flex
+                      .one-half
+                        h3= dataSearch[x].TenSach.toString()
+                      .one-forth
+                        span.price= dataSearch[x].Gia.toString()+'$'
+                    p
+                      span= dataSearch[x].TacGia.toString()
+                    p
+                      a.btn.btn-primary(href='/book?book='+dataSearch[x].IDSach.toString()) Buy now
+          br
+        nav(aria-label='Page navigation example')
+          ul.pagination.justify-content-end
+            li.page-item
+              a.page-link(href='/home/search?q='+q+'&page='+(pg-1).toString(), aria-label='Previous')
+                span(aria-hidden='true') &laquo;
+            - for(var x = 0; x < pages; x++)
+                if (x+1) == pg
+                  li.page-item.active
+                    a.page-link(href='/home/search?q='+q+'&page='+pg.toString())= pg.toString()
+                else
+                  li.page-item
+                    a.page-link(href='/home/search?q='+ q +'&page='+(x+1).toString())= (x+1).toString()
+            li.page-item
+              a.page-link(href='/home/search?q='+q+'&page='+(pg+1).toString(), aria-label='Next')
+                span(aria-hidden='true') &raquo;
+
+  if errorSearch
+    h1= errorSearch 
+
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4.text(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved
+script(src='/js/jquery.min.js')
+script(src='/js/jquery-migrate-3.0.1.min.js')
+script(src='/js/popper.min.js')
+script(src='/js/bootstrap.min.js')
+script(src='/js/jquery.easing.1.3.js')
+script(src='/js/jquery.waypoints.min.js')
+script(src='/js/jquery.stellar.min.js')
+script(src='/js/owl.carousel.min.js')
+script(src='/js/jquery.magnific-popup.min.js')
+script(src='/js/aos.js')
+script(src='/js/jquery.animateNumber.min.js')
+script(src='/js/bootstrap-datepicker.js')
+script(src='/js/jquery.timepicker.min.js')
+script(src='/js/scrollax.min.js')
 script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false')
-script(src='js/google-map.js')
-script(src='js/main.js')
+script(src='/js/google-map.js')
+script(src='/js/main.js')

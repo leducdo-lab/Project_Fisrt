@@ -1,0 +1,319 @@
+doctype html
+head
+  title Thanh to&aacute;n
+  base(href='../view/users/index.pug')
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8', data-ca-mode='')
+  meta(name='viewport', content='initial-scale=1.0, width=device-width')
+  meta(name='description', content='')
+  meta(name='keywords', content='thanh toan, thanh toán ')
+  meta(name='robots', content='noindex')
+  link(rel='stylesheet', href='/css/footer.css')
+  meta(name='viewport', content='width=device-width')
+  link(href='/images/nen1.png', rel='shortcut icon', type='image/png')
+  link(type='text/css', rel='stylesheet', href='/css/thanhtoan.css')
+  style#glyphs-style(type='text/css').
+    .glyph{
+    fill:currentColor;
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    text-align:center;
+    vertical-align:middle;
+    width:70%;
+    height:70%;
+    }
+    .glyph.sm{width:30%;height:30%;}
+    .glyph.md{width:50%;height:50%;}
+    .glyph.lg{height:100%;width:100%;}
+    .glyph-svg{width:100%;height:100%;}
+    .glyph-svg .fill{fill:inherit;}
+    .glyph-svg .line{stroke:currentColor;stroke-width:inherit;}
+    .glyph.spin{animation: spin 1s linear infinite;}
+    @-webkit-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @-moz-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+  style.
+    .lienket{
+    background-color: white;
+    color: black;
+    border: 2px solid #73AD21;
+    border-radius:5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Lucida Sans Unicode";
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+    .lienket:hover{
+    background-color: #73AD21;
+    color:white;
+    }
+    .lienket:active{
+    background-color: green;
+    border-color: green;
+    }
+    .button {
+    background-color:royalblue; /* màu của Quản trị mạng ^^ */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    table{
+    border: none;
+    width: 50%;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    /* body {
+    font-family: sans-serif;
+    color: #333;
+    background-image: url(images/nen5.jpg);
+    } */
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    .in[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('/images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+    .input[type=text] {
+    height: 45px;
+    width: 375%;
+    }
+    header{
+    border:1px solid #ccc;
+    background-color:black;
+    color:white;
+    text-align: center;
+    padding-bottom: 25px;
+    }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/users', style='font-size: x-large;') DTPBook
+        li
+          form
+            input.in(type='text', name='search', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='/users') Home
+        li
+          a(href='/users/menu') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+br
+br
+br
+.tygh-header.clearfix
+  .container.header-grid
+.tygh-content.clearfix
+  .container.content-grid
+    .row
+      .span16.main-content-grid
+        #checkout_step.box-steps.clearfix
+          ul.steps-checkout
+            li.active.li-step1
+              a.cm-ajax(data-ca-target-id='checkout_*', href='/users/loginthanhtoan')
+                img.img-step1(src='/images/step1.png')
+                br
+                span.step1 &Dstrok;&abreve;ng nh&#x1EAD;p
+            li.half-active.li-step2
+              img.img-step2(src='/images/step2.png')
+              br
+              span.step2 &Dstrok;&#x1ECB;a ch&#x1EC9; giao h&agrave;ng
+            li.li-step1
+              a.cm-ajax(data-ca-target-id='checkout_*', href='/users/thanhtoan')
+                img.img-step3(src='/images/step3.png')
+                br
+                span.step3 V&#x1EAD;n chuy&#x1EC3;n v&agrave; Thanh to&aacute;n
+        #checkout_steps.checkout-steps.cm-save-fields.clearfix
+          #step_one.ty-step__container.ty-step-one(data-ct-checkout='user_info')
+            #step_one_body.ty-step__body.hidden
+              form.cm-ajax.cm-processed-form(name='step_one_contact_information_form', action='/', method='GET')
+                input(type='hidden', name='update_step', value='step_one')
+                input(type='hidden', name='next_step', value='step_one')
+                input(type='hidden', name='result_ids', value='checkout*')
+                input.cm-no-hide-input(type='hidden', name='security_hash', value='')
+            // step_one
+          #step_two.ty-step__container-active.ty-step-two(data-ct-checkout='billing_shipping_address')
+            #step_two_body.ty-step__body-active.cm-skip-save-fields
+              form.cm-ajax.cm-ajax-full-render.cm-processed-form(name='step_two_billing_address', action='/users/diachi', method='POST')
+                
+                input(type='hidden', name='user_data[idnd]', value=ND[0].IDND.toString())
+                .clearfix
+                  .checkout__block
+                    .ty-control-group.select-profile
+                      label Ch&#x1ECD;n h&#x1ED3; s&#x1A1;:
+                      strong Ch&iacute;nh
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&nbsp;&nbsp;ho&#x1EB7;c&nbsp;&nbsp;&nbsp;
+                      a.cm-ajax(href='https://nhanvan.vn/checkout.html?edit_step=step_two&from_step=step_two&profile=new', data-ca-target-id='checkout_steps,checkout_step,cart_items,checkout_totals') T&#x1EA1;o h&#x1ED3; s&#x1A1; m&#x1EDB;i
+                .clearfix(data-ct-address='billing-address')
+                  .checkout__block
+                    
+                .clearfix.shipping-address__switch(data-ct-address='shipping-address')
+                  
+                  .clearfix
+                    #ba
+                      .checkout__block
+                        h3.ty-subheader   &Dstrok;&#x1ECB;a ch&#x1EC9; nh&#x1EAD;n s&aacute;ch 
+                        .ty-control-group.ty-profile-field__item.ty-billing-first-name
+                          label.ty-control-group__title.cm-profile-field.cm-required(for='elm_14') H&#x1ECD; t&ecirc;n
+                          .ty-control-group__value
+                            input#elm_14.ty-input-text.cm-skip-avail-switch.cm-focus(x-autocompletetype='given-name', type='text', name='user_data[ten]', size='32', value=ND[0].Ten.toString())
+                        .ty-control-group.ty-profile-field__item.ty-billing-phone
+                          label.ty-control-group__title.cm-profile-field.cm-required(for='elm_30') S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i
+                          .ty-control-group__value
+                            input#elm_30.ty-input-text.cm-skip-avail-switch(x-autocompletetype='phone-full', type='text', name='user_data[phone]', size='32', value=ND[0].Phone.toString())
+                        .ty-control-group.ty-profile-field__item.ty-billing-email
+                          label.ty-control-group__title.cm-profile-field.cm-required.cm-email(for='elm_32') Email
+                          .ty-control-group__value
+                            input#elm_32.ty-input-text.cm-skip-avail-switch(x-autocompletetype='email', type='text', name='user_data[email]', size='32', value=ND[0].TenDN.toString())
+                        .ty-control-group.ty-profile-field__item.ty-billing-address
+                          label.ty-control-group__title.cm-profile-field.cm-required(for='elm_18') &Dstrok;&#x1ECB;a ch&#x1EC9;
+                          .ty-control-group__value
+                            input#elm_18.ty-input-text.cm-skip-avail-switch(x-autocompletetype='street-address', type='text', name='user_data[b_address]', size='32', value=ND[0].DiaChi.toString())
+                        .ty-control-group.ty-profile-field__item.ty-address_type
+                          label.ty-control-group__title.cm-profile-field.cm-required(for='elm_55') Lo&#x1EA1;i &dstrok;&#x1ECB;a ch&#x1EC9;
+                          .ty-control-group__value
+                            #elm_55
+                              input#elm_55_3.radio.cm-skip-avail-switch.elm_55(type='radio', name='user_data[loai]', value='1', checked='checked')
+                              span.radio Nh&agrave; ri&ecirc;ng / Chung c&#x1B0;
+                              input#elm_55_4.radio.cm-skip-avail-switch.elm_55(type='radio', name='user_data[loai]', value='2')
+                              span.radio C&ocirc;ng ty / C&#x1A1; Quan
+                .ty-checkout-buttons
+                  button.ty-btn__secondary.ty-btn(type='submit') Ti&#x1EBF;p t&#x1EE5;c
+                
+            // step_two
+          #step_three.ty-step__container.ty-step-three(data-ct-checkout='shipping_options')
+            #step_three_body.ty-step__body.hidden.clearfix
+            // step_three
+          .clearfix.ty-checkout__billing-tabs  
+          #place_order_data.hidden  
+        // step_four
+      #place_order_data.hidden  
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved

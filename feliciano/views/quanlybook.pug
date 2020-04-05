@@ -1,0 +1,364 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  title Admin - DTPBook
+  link(href='/css/bootstrap.min.css', rel='stylesheet')
+  link(href='/css/datepicker3.css', rel='stylesheet')
+  link(href='/css/bootstrap-table.css', rel='stylesheet')
+  link(href='/css/styles.css', rel='stylesheet')
+  link(rel='stylesheet', href='/css/footer.css')
+  style#glyphs-style(type='text/css').
+    .glyph{
+    fill:currentColor;
+    display:inline-block;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    text-align:center;
+    vertical-align:middle;
+    width:70%;
+    height:70%;
+    }
+    .glyph.sm{width:30%;height:30%;}
+    .glyph.md{width:50%;height:50%;}
+    .glyph.lg{height:100%;width:100%;}
+    .glyph-svg{width:100%;height:100%;}
+    .glyph-svg .fill{fill:inherit;}
+    .glyph-svg .line{stroke:currentColor;stroke-width:inherit;}
+    .glyph.spin{animation: spin 1s linear infinite;}
+    @-webkit-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @-moz-keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+    @keyframes spin {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+    }
+  style.
+    .lienket{
+    background-color: white;
+    color: black;
+    border: 2px solid #73AD21;
+    border-radius:5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: "Lucida Sans Unicode";
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+    .lienket:hover{
+    background-color: #73AD21;
+    color:white;
+    }
+    .lienket:active{
+    background-color: green;
+    border-color: green;
+    }
+    table{
+    border: none;
+    width: 50%;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    background-image: url(../images/nen5.jpg);
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    input[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('../images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+style(type='text/css').
+  header{
+  border:1px solid #ccc;
+  background-color:black;
+  color:white;
+  text-align: center;
+  padding-bottom: 15px;
+  }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='/addmin', style='font-size: x-large;') DTPBook
+        li
+          form(action='/search',method='GET')
+            input(type='text', name='q', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='/addmin') Home
+        li
+          a(href='/users/menu') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/qltv') Quản lý
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+br
+br
+br
+.col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
+  .row
+    li
+      a.lienket(href='/qltv') Qu&#x1EA3;n l&yacute; th&agrave;nh vi&ecirc;n
+    li
+      a.lienket(href='/addbook') Th&ecirc;m s&aacute;ch
+    // <li class="active">Thêm sách</li>
+    li
+      a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
+  .row
+    .col-lg-12
+      h1.page-header(style='color: #fff;') Danh s&aacute;ch s&aacute;ch
+  // /.row
+  .row
+    .col-lg-12
+      .panel.panel-default
+        .panel-body
+          .bootstrap-table
+            .fixed-table-toolbar
+              .bars.pull-left
+                #toolbar.btn-group
+                  
+                p(style='color: white;')
+                    i.glyphicon.glyphicon-plus
+                    |  Th&ecirc;m th&agrave;nh vi&ecirc;n
+            .fixed-table-container
+              .fixed-table-header
+                table
+                  .fixed-table-body
+                    .fixed-table-loading(style='top: 37px;') Loading, please wait&mldr;
+                    table.table.table-hover(data-toolbar='#toolbar', data-toggle='table')
+                      thead
+                        tr
+                          th(style='')
+                            .th-inner.sortable T&ecirc;n s&aacute;ch
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable Th&#x1EC3; lo&#x1EA1;i
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable T&aacute;c gi&#x1EA3;
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable Nh&agrave; xu&#x1EA5;t b&#x1EA3;n
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable Ng&agrave;y xu&#x1EA5;t b&#x1EA3;n
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable S&#x1ED1; l&#x1B0;&#x1EE3;ng
+                            .fht-cell
+                          th(style='')
+                            .th-inner.sortable Gi&aacute; ti&#x1EC1;n
+                            .fht-cell
+                          // <th style=""><div class="th-inner ">Quyền</div><div class="fht-cell"></div></th>
+                          th(style='')
+                            .th-inner S&#x1EED;a
+                            .fht-cell
+                          th(style='')
+                            .th-inner X&oacute;a
+                            .fht-cell
+                      tbody
+                        - for(var x = 0; x < data.length; x++)
+                            tr(data-index=x)
+                            td(style='')= data[x].TenSach.toString()
+                            td(style='')= data[x].Name.toString()
+                            td(style='')= data[x].TacGia.toString()
+                            td(style='')= data[x].NhaXB.toString()
+                            td(style='')= data[x].NgayXB.toString()
+                            td(style='')= data[x].SoLuong.toString()
+                            td(style='')= data[x].Gia.toString()+'$'
+                            // <td style=""><span class="label label-danger">Admin</span></td>
+                            td.form-group(style='')
+                                a.btn.btn-primary(href='/Suabook?book='+data[x].TenSach.toString())
+                                i.glyphicon.glyphicon-pencil
+                            td.form-group(style='')
+                                a.btn.btn-danger(href='/deleteBook?book='+data[x].IDSach.toString())
+                                i.glyphicon.glyphicon-remove
+                        //
+                          <tr data-index="1">
+                          <td style="">7</td><td style="">Thao</td>
+                          <td style="">thaogreenhouses@gmail.com</td>
+                          <td style=""><span class="label label-danger">Admin</span></td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                          </td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                          </td>
+                          </tr>
+                          <tr data-index="2">
+                          <td style="">3</td>
+                          <td style="">Nguyễn Van A</td>
+                          <td style="">nguyenvana@gmail.com</td>
+                          <td style=""><span class="label label-warning">member</span></td>
+                          <td class="form-group" style="">
+                          <a class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                          </td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                          </td>
+                          </tr>
+                          <tr data-index="3">
+                          <td style="">4</td>
+                          <td style="">Nguyễn Van B</td>
+                          <td style="">nguyenvanb@gmail.com</td>
+                          <td style=""><span class="label label-warning">member</span></td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                          </td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                          </td>
+                          </tr>
+                          <tr data-index="4">
+                          <td style="">5</td>
+                          <td style="">Nguyễn Van C</td>
+                          <td style="">nguyenvanc@gmail.com</td>
+                          <td style=""><span class="label label-warning">member</span></td>
+                          <td class="form-group" style="">
+                          <a class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
+                          </td>
+                          <td class="form-group" style="">
+                          <a  class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                          </td>
+                          </tr>
+                  .fixed-table-pagination
+            .clearfix
+          .panel-footer
+            nav(aria-label='Page navigation example')
+              ul.pagination
+                li.page-item
+                  a.page-link(href='/qlybook?page_layout=user&page='+(pages - 1).toString()) &laquo;
+                    - for(var x = 0; x < page; x++)
+                        if((x + 1) == pages)
+                            li.page-item.active
+                                a.page-link(href='/qlybook?page_layout=user&page='+(x+1).toString())= (x+1)
+                        else
+                            li.page-item
+                                a.page-link(href='/qlybook?page_layout=user&page='+(x+1).toString())= (x+1).toString()
+                li.page-item
+                  a.page-link(href='/qlybook?page_layout=user&page='+(pages + 1).toString()) &raquo;
+    // /.row
+  // /.main
+  // master page
+  form
+    footer
+      .splitter
+      .bar
+        .bar-wrap
+          .social
+            a.fb(href='#')
+              span.icon1(data-icon1='f')
+              span.info
+                span.follow Become a fan Facebook
+                span.num 9,999
+            a.tw(href='#')
+              span.icon1(data-icon1='T')
+              span.info
+                span.follow Follow us Twitter
+                span.num 9,999
+            a.rss(href='#')
+              span.icon1(data-icon1='R')
+              span.info
+                span.follow Subscribe RSS
+                span.num 9,999
+          .clear
+          table
+            tr
+              td(width='40%')
+                .copyright
+                  h4(style='color:#ccc') DTPBook
+              td(width='40%')
+                .copyright
+                  ol
+                    h4(style='color:#ccc;') Chi Nh&aacute;nh
+                  li Hai B&agrave; Tr&#x1B0;ng
+              td(width='40%')
+                .copyright
+                  ol
+                    h4(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+                  li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+          br
+          br
+          .copyright &copy;  2014 All Rights Reserved

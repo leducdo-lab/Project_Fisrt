@@ -1,0 +1,315 @@
+doctype html
+head
+  title N&#x1ED9;i dung gi&#x1ECF; h&agrave;ng - Gi&#x1ECF; H&agrave;ng DTPBook
+  meta(http-equiv='Content-Type', content='text/html; charset=utf-8', data-ca-mode='')
+  meta(name='viewport', content='initial-scale=1.0, width=device-width')
+  meta(name='description', content='Danh mục tổng hợp tất cả các sản phẩm khách hàng yêu thích chọn và có ý định sẽ mua. Giúp khách hàng theo dõi đơn hàng của mình dễ dàng hơn.')
+  meta(name='keywords', content='gio hang, giỏ hàng, DTPBook')
+  link(type='text/css', rel='stylesheet', href='/css/thanhvien.css')
+  link(type='text/css', rel='stylesheet', href='/css/thanhtoan.css')
+  link(rel='stylesheet', href='/css/footer.css')
+  style.
+    table{
+    border: none;
+    width: 50%;
+    }
+    .box-content-notification {
+    display: inline-block;
+    height: 100%;
+    border-left: 1px solid #ebebeb;
+    padding: 10px 0px 0px 0px;
+    min-height: 515px;
+    width: 100%;
+    margin-top: 30px;
+    }
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    /* background-image: url(images/nen5.jpg); */
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    background:black;
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 150px;
+    height: 40px;
+    line-height: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 0 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
+    .in[type=text] {
+    height: 45px;
+    width: 375%;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('images/search.png');
+    background-position: 2px 3px;
+    background-repeat: no-repeat;
+    background-size: 35px;
+    padding: 12px 20px 12px 40px;
+    }
+  style(type='text/css').
+    .cm-noscript {display:none}
+  style(type='text/css').
+    @keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-moz-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}@-webkit-keyframes tawkMaxOpen{0%{opacity:0;transform:translate(0, 30px);;}to{opacity:1;transform:translate(0, 0px);}}#zq51uAv-1576341092310{outline:none!important;visibility:visible!important;resize:none!important;box-shadow:none!important;overflow:visible!important;background:none!important;opacity:1!important;filter:alpha(opacity=100)!important;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity1)!important;-moz-opacity:1!important;-khtml-opacity:1!important;top:auto!important;right:10px!important;bottom:90px!important;left:auto!important;position:fixed!important;border:0!important;min-height:0!important;min-width:0!important;max-height:none!important;max-width:none!important;padding:0!important;margin:0!important;-moz-transition-property:none!important;-webkit-transition-property:none!important;-o-transition-property:none!important;transition-property:none!important;transform:none!important;-webkit-transform:none!important;-ms-transform:none!important;width:auto!important;height:auto!important;display:none!important;z-index:2000000000!important;background-color:transparent!important;cursor:auto!important;float:none!important;border-radius:unset!important;pointer-events:auto!important}#FE7k1Hv-1576341092313.open{animation : tawkMaxOpen .25s ease!important;}
+style(type='text/css').
+  header{
+  border:1px solid #ccc;
+  background-color:black;
+  color:white;
+  text-align:center;
+  padding-bottom:27px;
+  }
+header
+  nav
+    #menu
+      ul
+        li
+          a(href='index.html', style='font-size: x-large;') DTPBook
+        li
+          form
+            input.in(type='text', name='search', placeholder='Search..')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          div(style='display: inline-block;')
+        li
+          a(href='index.html') Home
+        li
+          a(href='menu.html') Menu
+        // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
+        li
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: -3px;") T&agrave;i kho&#x1EA3;n
+          ul.sub-menu
+            li
+              a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
+            li
+              a(href='/users/repassword') Đổi mật khẩu
+            li
+              a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
+        li
+          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
+          map(name='map')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+br
+br
+.tygh-header.clearfix
+  .container.header-grid
+    .tygh-content.clearfix
+      .container.content-grid
+        .row
+          .span16.main-content-grid
+            #checkout_step.box-steps.clearfix
+              ul.steps-checkout
+                li.active.li-step1
+                  a.cm-ajax(href='/users/loginthanhtoan')
+                    img.img-step1(href='/users/loginthanhtoan', src='/images/step1.png')
+                    br
+                    span.step1 &Dstrok;&abreve;ng nh&#x1EAD;p
+                li.half-active.full-active.li-step2
+                  a.cm-ajax(href='/users/diachi')
+                    img.img-step2(href='/users/diachi', src='/images/step2.png')
+                    br
+                    span.step2 &Dstrok;&#x1ECB;a ch&#x1EC9; giao h&agrave;ng
+                li.half-active.full-active.li-step3
+                  img.img-step3(src='/images/step3.png')
+                  br
+                  span.step3 V&#x1EAD;n chuy&#x1EC3;n v&agrave; Thanh to&aacute;n
+            // Inline script moved to the bottom of the page
+            #checkout_steps.checkout-steps.cm-save-fields.clearfix
+              #step_one.ty-step__container.ty-step-one(data-ct-checkout='user_info')
+                #step_one_body.ty-step__body.hidden
+                  form.cm-ajax.cm-processed-form(name='step_one_contact_information_form', action='https://nhanvan.vn/', method='get')
+                    input(type='hidden', name='update_step', value='step_one')
+                    input(type='hidden', name='next_step', value='step_four')
+                    input(type='hidden', name='result_ids', value='checkout*')
+                    input.cm-no-hide-input(type='hidden', name='security_hash', value='fe135f31f67272cd5808798d17a96c3d')
+                // step_one
+              #step_two.ty-step__container.ty-step-two(data-ct-checkout='billing_shipping_address')
+                #step_two_body.ty-step__body.hidden.cm-skip-save-fields
+                  form.cm-ajax.cm-ajax-full-render.cm-processed-form(name='step_two_billing_address', action='https://nhanvan.vn/', method='get')
+                    input(type='hidden', name='update_step', value='step_two')
+                    input(type='hidden', name='next_step', value='step_four')
+                    input(type='hidden', name='result_ids', value='checkout*,account*')
+                    input(type='hidden', name='dispatch', value='checkout.checkout')
+                    input.cm-no-hide-input(type='hidden', name='security_hash', value='fe135f31f67272cd5808798d17a96c3d')
+                // step_two
+              .tygh-content.clearfix
+                .container.content-grid
+                  .row
+                    .span11.main-content-cart
+                      .ty-mainbox-container.clearfix
+                        .ty-mainbox-body
+                          form.cm-ajax.cm-ajax-full-render.cm-processed-form(name='step_three_payment_and_shipping', action='https://nhanvan.vn/', method='post')
+                            input(type='hidden', name='update_step', value='step_three')
+                            input(type='hidden', name='next_step', value='step_four')
+                            input(type='hidden', name='result_ids', value='checkout*')
+                            div
+                              .ty-mainbox-cart__body
+                                #cart_items
+                                  //
+                                    <div class="clearfix" >
+                                    <div class="checkout__block">
+                                  h3 Ph&#x1B0;&#x1A1;ng th&#x1EE9;c v&#x1EAD;n chuy&#x1EC3;n
+                                  #shipping_rates_list
+                                    span.ty-shipping-options__vendor-name NH&Agrave; S&Aacute;CH DTPBook
+                                    .ty-shipping-options__method
+                                      input#sh_0_1.ty-valign.ty-shipping-options__checkbox(type='radio', name='shipping_ids[0]', value='40.000', onclick='chon("sh_0_1");', checked='"checked"')
+                                      .ty-shipping-options__group
+                                        label.ty-valign.ty-shipping-options__title(for='sh_0_1')
+                                          bdi
+                                            | Giao h&agrave;ng ti&#x1EBF;t ki&#x1EC7;m (1 &dstrok;&#x1EBF;n 7 ng&agrave;y l&agrave;m vi&#x1EC7;c)
+                                            bdi
+                                              span 40.000
+                                              | &dstrok;
+                                    .ty-checkout__shipping-tips
+                                      p
+                                      p
+                                        | - Freeship n&#x1ED9;i th&agrave;nh H&agrave; N&#x1ED9;i v&#x1EDB;i &Dstrok;H tr&ecirc;n 150K
+                                        br
+                                        | - Freeship to&agrave;n qu&#x1ED1;c v&#x1EDB;i &Dstrok;H tr&ecirc;n 250K
+                                      p
+                                        | * L&#x1B0;u &yacute;: Freeship kh&ocirc;ng &aacute;p d&#x1EE5;ng v&#x1EDB;i &Dstrok;H S&aacute;ch Gi&aacute;o Khoa
+                                      p
+                                    .ty-shipping-options__method
+                                      input#sh_0_9.ty-valign.ty-shipping-options__checkbox(type='radio', name='shipping_ids[0]', value='48.000', onclick='chon("sh_0_9");')
+                                      .ty-shipping-options__group
+                                        label.ty-valign.ty-shipping-options__title(for='sh_0_9')
+                                          bdi
+                                            | Giao h&agrave;ng nhanh (1 &dstrok;&#x1EBF;n 5 ng&agrave;y)
+                                            bdi
+                                              span 48.000
+                                              | &dstrok;
+                                    .ty-checkout__shipping-tips
+                                      p
+                                      p Th&#x1EDD;i gian giao h&agrave;ng t&#x1EEB; 1- 3 ng&agrave;y l&agrave;m vi&#x1EC7;c (kh&ocirc;ng t&iacute;nh t7,cn, ng&agrave;y l&#x1EC5;)
+                                      p
+                                  .ty-checkout__shipping-tips
+                            input.cm-no-hide-input(type='hidden', name='security_hash', value='fe135f31f67272cd5808798d17a96c3d')
+                          // Inline script moved to the bottom of the page
+                          style(type='text/css').
+                            .tygh-top-panel {
+                            background: #fff;
+                            margin-bottom: 40px;
+                            }
+                    form(action='/users/thanhtoan',method='POST')
+                      .span5
+                        #checkout_info_summary_280.ty-checkout-summary.cm-reload-
+                          .widget-box.widget-cart
+                            .order-info
+                              span.text-total-cart
+                                | T&#x1EA1;m t&iacute;nh: 
+                                strong
+                                  bdi
+                                    span#span_tc= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.") 
+                                    | $
+                            ul
+                              li.ty-checkout-summary__item V&#x1EAD;n chuy&#x1EC3;n
+                              li.ty-checkout-summary__item.ty-right(data-ct-checkout-summary='shipping')
+                                span
+                                  bdi
+                                    span#span_tt 0
+                                    | $
+                            span.text-total-order
+                              | T&#x1ED5;ng ti&#x1EC1;n: 
+                              strong
+                                bdi
+                                  span#span_sum= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+                                  | $
+                                br
+                                span.text-vat (&Dstrok;&atilde; bao g&#x1ED3;m VAT)
+                          .button-order
+                            -for(var x = 0; x < Book.length; x++)
+                                input(type="hidden",name='book_id[]',value=Book[x].IDSach.toString())
+                            input(type="hidden",name='book_gia',value='',id='book_gia')
+                            input.btn-order(type='submit', value='Đặt hàng')
+                      
+footer
+  .splitter
+  .bar
+    .bar-wrap
+      .social
+        a.fb(href='#')
+          span.icon1(data-icon1='f')
+          span.info
+            span.follow Become a fan Facebook
+            span.num 9,999
+        a.tw(href='#')
+          span.icon1(data-icon1='T')
+          span.info
+            span.follow Follow us Twitter
+            span.num 9,999
+        a.rss(href='#')
+          span.icon1(data-icon1='R')
+          span.info
+            span.follow Subscribe RSS
+            span.num 9,999
+      .clear
+      table
+        tr
+          td(width='40%')
+            .copyright
+              h4.text(style='color:#ccc') DTPBook
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') Chi Nh&aacute;nh
+              li Hai B&agrave; Tr&#x1B0;ng
+          td(width='40%')
+            .copyright
+              ol
+                h4.text(style='color:#ccc;') &Dstrok;&#x1ECB;a ch&#x1EC9;
+              li S&#x1ED1; 1 &Dstrok;&#x1EA1;i C&#x1ED3; Vi&#x1EC7;t
+      br
+      br
+      .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved
+
+script.
+    function chon(x){
+        var chon = document.getElementById(x).value;
+        document.getElementById("span_tt").innerHTML = chon;
+        document.getElementById("span_sum").innerHTML = parseInt(document.getElementById("span_tt").innerHTML.replace('.','')) + parseFloat(document.getElementById("span_tc").innerHTML.replace('.',''));
+        document.getElementById("span_sum").innerHTML = document.getElementById("span_sum").innerHTML.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+        document.getElementById("book_gia").value = document.getElementById("span_sum").innerHTML;
+    }

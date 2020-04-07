@@ -115,6 +115,7 @@ header
           div(style='display: inline-block;')
         li
           a(href='/users') Home
+        
         li
           a(href='/users/menu?page=1') Menu
         li
@@ -145,6 +146,8 @@ if GH
                       h2.title-section
                         | GI&#x1ECE; H&Agrave;NG 
                         span= '('+SL.toString()+' sản phẩm)'
+                      if thieuhang
+                        p = thieuhang
                     .hidden
                       button#button_cart.ty-btn__secondary.ty-btn(type='submit', name='dispatch[checkout.update]') T&iacute;nh l&#x1EA1;i
                     div
@@ -157,19 +160,19 @@ if GH
                                   #product_image_update_4228350411.ty-cart-content__image.cm-reload-4228350411
                                     img#det_img_4228350411.ty-pict.cm-image(src='/images/'+GH[x].IDSach.toString()+'.jpg', alt='', title='')
                                 td.ty-cart-content__product-elem.ty-cart-content__description
-                                  a.ty-cart-content__product-title=GH[x].TenSach.toString()
+                                  a(style='font-size:20px').ty-cart-content__product-title=GH[x].TenSach.toString()
                                   #options_4228350411.ty-product-options.ty-group-block
                                     bdi
                                       #product_info_update_4228350411.cm-reload-4228350411
                                         p
-                                          a.cm-dialog-opener.cm-dialog-auto-size(data-ca-target-id='discount_4228350411', rel='nofollow') Gi&#x1EA3;m gi&aacute;
+                                          
                                         #discount_4228350411.ty-group-block.hidden(title='Giảm giá')
                                           table.ty-cart-content__more-info.ty-table
                                             thead
                                               tr
                                                 th.ty-cart-content__more-info-title Gi&aacute;
                                                 th.ty-cart-content__more-info-title S&#x1ED1; l&#x1B0;&#x1EE3;ng
-                                                th.ty-cart-content__more-info-title Gi&#x1EA3;m gi&aacute;
+                                                
                                                 th.ty-cart-content__more-info-title T&#x1ED5;ng
                                             tbody
                                               tr
@@ -202,9 +205,9 @@ if GH
                                     input(type='hidden', name='baby', value=GH[x].IDSach.toString())
                                     label(for='amount_4228350411')
                                     .ty-center.ty-value-changer.cm-value-changer
-                                      button.btn.btn-primary.ty-value-changer__decrease.cm-external-click(type='button',onclick='giam('+x+')') &minus;
+                                      button.btn.btn-primary.ty-value-changer__decrease.cm-external-click(type='button',onclick='giam('+x+','+GH[x].Gia+','+Gia+')') &minus;
                                       input#GH.ty-value-changer__input.cm-amount(type='number', size='3', name='slg', value=GH[x].SoLuong.toString())
-                                      button.cm-increase_pro.ty-value-changer__increase.cm-external-click(type='button',onclick='tang('+x+')') +
+                                      button.cm-increase_pro.ty-value-changer__increase.cm-external-click(type='button',onclick='tang('+x+','+GH[x].Gia+','+GH[x].SL+')') +
                                 
               // Inline script moved to the bottom of the page
               style(type='text/css').
@@ -219,17 +222,18 @@ if GH
                 .order-info
                   -for(var x = 0; x < GH.length; x++)
                       input(type="hidden",name='user_data[idsach]',value=GH[x].IDSach.toString())
+                      input(type='hidden',name='user_data[slg]',value=GH[x].SoLuong.toString(),id='slg'+x.toString())
                   span.text-total-cart
                     | T&#x1EA1;m t&iacute;nh: 
                     strong
                       bdi
-                        span= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+                        span#tamtinh= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
                         | $
                 span.text-total-order
                   | T&#x1ED5;ng ti&#x1EC1;n: 
                   strong
                     bdi
-                      span#sec_cart_total= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+                      span#tongtien= Gia.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
                       | $
                     br
                     span.text-vat (&Dstrok;&atilde; bao g&#x1ED3;m VAT)
@@ -295,11 +299,21 @@ footer(style=' margin-top: 115px; ')
       br
       .copyright(style='text-align: center;') &copy;  2014 All Rights Reserved
 script.
-  function giam(x){
-    var element = document.getElementsByTagName("input"); 
-    element[2+2*x].value =parseInt(element[2+2*x].value)-1;
-  }
-  function tang(x){
+  function giam(x,giasach,gia){
     var element = document.getElementsByTagName("input");
-    element[2+2*x].value =parseInt(element[2+2*x].value)+1;
+    if(parseInt(element[2+2*x].value) > 0){
+      element[2+2*x].value =parseInt(element[2+2*x].value)-1;
+      document.getElementById("tamtinh").innerHTML = (parseInt(document.getElementById("tamtinh").innerHTML.replace(/\./g,'')) - giasach).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      document.getElementById("tongtien").innerHTML = (parseInt(document.getElementById("tongtien").innerHTML.replace(/\./g,'')) - giasach).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      document.getElementById("slg"+x.toString()).value = parseInt(element[2+2*x].value);
+    }
+  }
+  function tang(x,giasach,slcl){
+    var element = document.getElementsByTagName("input");
+    if(parseInt(element[2+2*x].value) < slcl){
+      element[2+2*x].value =parseInt(element[2+2*x].value)+1;
+      document.getElementById("tamtinh").innerHTML = (parseInt(document.getElementById("tamtinh").innerHTML.replace(/\./g,'')) + giasach).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      document.getElementById("tongtien").innerHTML = (parseInt(document.getElementById("tongtien").innerHTML.replace(/\./g,'')) + giasach).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+      document.getElementById("slg"+x.toString()).value = parseInt(element[2+2*x].value);
+    }  
   }

@@ -86,8 +86,8 @@ head
     color: #f1f1f1;
     display: inline-block;
     width: 150px;
-    height: 40px;
-    line-height: 70px;
+    height: 30px;
+    line-height: 50px;
     margin-left: -5px;
     }
     #menu a {
@@ -137,7 +137,7 @@ style(type='text/css').
   background-color:black;
   color:white;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   }
 header
   nav
@@ -146,7 +146,7 @@ header
         li
           a(href='/addmin', style='font-size: x-large;') DTPBook
         li
-          form(action='/qltv', method='GET')
+          form
             input(type='text', name='search', placeholder='Search..')
         li
           div(style='display: inline-block;')
@@ -181,12 +181,12 @@ br
       a.lienket(href='/addbook') Th&ecirc;m s&aacute;ch
     // <li class="active">Thêm sách</li>
     li
-      a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
+      a.lienket(href='/qlyBook') Qu&#x1EA3;n l&yacute; s&aacute;ch
     li
-      a.lienket(href='/qlyDon') Quản lý đơn hàng
+      a.lienket(href='/qlyDon') Qu&#x1EA3;n l&yacute; &dstrok;&#x1A1;n h&agrave;ng
   .row
     .col-lg-12
-      h1.page-header(style='color: #fff;') Danh s&aacute;ch th&agrave;nh vi&ecirc;n
+      h1.page-header(style='color: #fff;') Danh s&aacute;ch &dstrok;&#x1A1;n h&agrave;ng
   // /.row
   .row
     .col-lg-12
@@ -196,8 +196,7 @@ br
             .fixed-table-toolbar
               .bars.pull-left
                 #toolbar.btn-group
-                  p(style='color: white;')
-                    i.glyphicon.glyphicon-plus Th&ecirc;m th&agrave;nh vi&ecirc;n
+                  // <a href="index.php?page_layout=add_user" class="btn btn-success">
             .fixed-table-container
               .fixed-table-header
                 table
@@ -207,62 +206,66 @@ br
                       thead
                         tr
                           th(style='')
-                            .th-inner.sortable ID
+                            .th-inner.sortable M&atilde; &dstrok;&#x1A1;n h&agrave;ng
                             .fht-cell
                           th(style='')
-                            .th-inner.sortable H&#x1ECD; &amp; T&ecirc;n
+                            .th-inner.sortable ID Ng&#x1B0;&#x1EDD;i Mua
                             .fht-cell
                           th(style='')
-                            .th-inner.sortable Email
+                            .th-inner.sortable S&#x1EA3;n ph&#x1EA9;m
                             .fht-cell
                           th(style='')
-                            .th-inner Quy&#x1EC1;n
+                            .th-inner.sortable S&#x1ED1; l&#x1B0;&#x1EE3;ng
                             .fht-cell
                           th(style='')
-                            .th-inner S&#x1EED;a
+                            .th-inner T&#x1ED5;ng c&#x1ED9;ng
                             .fht-cell
                           th(style='')
-                            .th-inner X&oacute;a
+                            .th-inner Tr&#x1EA1;ng th&aacute;i
                             .fht-cell
                       tbody
-                        -for(var x = 0; x < TV.length; x++)
-                          tr(data-index=x.toString())
-                            td(style='')=TV[x].IDND.toString() 
-                            td(style='')=TV[x].Ten.toString() 
-                            td(style='')=TV[x].TenDN.toString()
-                            if TV[x].DiaChi.toString() == "Admin"
-                              td(style='')
-                                span.label.label-danger=TV[x].DiaChi.toString()
-                            else
-                              td(style='')
-                                span.label.label-danger Member
-                            td.form-group(style='')
-                              a.btn.btn-primary(href='/suatv?tv='+TV[x].IDND.toString())
-                                i.glyphicon.glyphicon-pencil
-                            td.form-group(style='')
-                              a.btn.btn-danger(href='/deletetv?tv='+TV[x].IDND.toString())
-                                i.glyphicon.glyphicon-remove
-                        
+                        -var y = 0;
+                        -var z = 0;
+                        -for(var x = 0 ; x <= dodai; x++)
+                            
+                            tr(data-index=x.toString())
+                            td(style='')= DH[x].MaDonHang.toString()
+                            td(style='')= DH[x].IDND.toString()
+                                td(style='')
+                                    -for(;y <= dodai; y++)
+                                        if(DH[x].MaDonHang != DH[y].MaDonHang)
+                                            - break
+                                        else
+                                            ul= DH[y].TenSach.toString()
+                                td(style='')
+                                    -for(;z <= dodai; z++)
+                                        if(DH[x].MaDonHang != DH[z].MaDonHang)
+                                            - break
+                                        else
+                                            ul= DH[z].SL.toString()
+                            td(style='')=parseInt(DH[x].TongTien).toString()
+                            td(style='')= DH[x].TrangThai.toString()
+                            - x=y-1;
                   .fixed-table-pagination
             .clearfix
           .panel-footer
             nav(aria-label='Page navigation example')
               ul.pagination
                 li.page-item
-                  a.page-link(href='/qltv?page='+(page-1).toString()) &laquo;
+                  a.page-link(href='/qlyDon?page='+(page-1).toString()) &laquo;
                 -for(var x = 0; x < slg; x++)
                   if (x+1) == page
                     li.page-item.active
-                      a.page-link(href='/qltv?page='+page.toString())= page.toString()
+                      a.page-link(href='/qlyDon?page='+page.toString())= page.toString()
                   else
                     li.page-item
-                      a.page-link(href='/qltv?page='+(x+1).toString())= (x+1).toString()
+                      a.page-link(href='/qlyDon?page='+(x+1).toString())= (x+1).toString()
                 li.page-item
-                  a.page-link(href='/qltv?page='+(page+1).toString()) &raquo;
+                  a.page-link(href='/qlyDon?page='+(page+1).toString()) &raquo;
     // /.row
   // /.main
   // master page
-  form(style=' margin-top: 113px; ')
+  form
     footer
       .splitter
       .bar

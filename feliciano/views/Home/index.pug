@@ -100,9 +100,8 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
         input(type='text', name='q', placeholder='Search..')
       ul.navbar-nav.ml-auto
         li.nav-item.active
-          a.nav-link(href='/home') Home
-        li.nav-item
-          a.nav-link(href='/home/new') New
+          a(style='margin-right: 10px;').nav-link(href='/home') Home
+        
         li.nav-item
           a(style=" padding-right: 15px; margin-right: 10px;").nav-link(href='/home/menu1?page=1') Menu
         if !user
@@ -110,7 +109,7 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
             a.nav-link(href='/home/login') Login
         if user
           li
-            a(href='#') T&agrave;i kho&#x1EA3;n
+            a(href='#',style=" height: 50px; padding-top: 10px; ") T&agrave;i kho&#x1EA3;n
             ul.sub-menu
               li
                 a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
@@ -151,7 +150,7 @@ section.ftco-section.ftco-no-pt.ftco-no-pb
       .col-md-12
         .featured
           .row
-            if !data
+            if data
               if datas
                 - for(var x = 0; x < datas.length; x++)
                   .col-md-3
@@ -203,7 +202,7 @@ section.ftco-section.ftco-no-pt.ftco-no-pb
                 span.subheading About
                 h2.mb-4 DTPBook
               p
-                | S&aacute;ch l&agrave; m&#x1ED9;t c&aacute;nh c&#x1EED;a &dstrok;&#x1B0;a con ng&#x1B0;&#x1EDD;i &dstrok;i t&#x1EDB;i m&#x1ECD;i n&#x1A1;i , h&#x1B0;&#x1EDB;ng ch&uacute;ng ta &dstrok;&#x1EBF;n v&#x1EDB;i c&aacute;i &dstrok;&#x1EB9;p . Vi&#x1EC7;c &dstrok;&#x1ECD;c s&aacute;ch kh&ocirc;ng ch&#x1EC9; l&agrave; m&oacute;n &abreve;n tinh th&#x1EA7;y m&agrave; c&ograve;n l&agrave; ngu&#x1ED3;n s&#x1ED1;ng c&#x1EE7;a nhi&#x1EC1;u ng&#x1B0;&#x1EDD;i. Ch&uacute;ng t&ocirc;i h&acirc;n h&#x1EA1;nh l&agrave; ng&#x1B0;&#x1EDD;i &dstrok;em m&oacute;n &abreve;n &dstrok;&#x1EA5;y &dstrok;&#x1EBF;n cho b&#x1EA1;n.
+                | S&aacute;ch l&agrave; m&#x1ED9;t c&aacute;nh c&#x1EED;a &dstrok;&#x1B0;a con ng&#x1B0;&#x1EDD;i &dstrok;i t&#x1EDB;i m&#x1ECD;i n&#x1A1;i , h&#x1B0;&#x1EDB;ng ch&uacute;ng ta &dstrok;&#x1EBF;n v&#x1EDB;i c&aacute;i &dstrok;&#x1EB9;p . Vi&#x1EC7;c &dstrok;&#x1ECD;c s&aacute;ch kh&ocirc;ng ch&#x1EC9; l&agrave; m&oacute;n &abreve;n tinh th&#x1EA7;n m&agrave; c&ograve;n l&agrave; ngu&#x1ED3;n s&#x1ED1;ng c&#x1EE7;a nhi&#x1EC1;u ng&#x1B0;&#x1EDD;i. Ch&uacute;ng t&ocirc;i h&acirc;n h&#x1EA1;nh l&agrave; ng&#x1B0;&#x1EDD;i &dstrok;em m&oacute;n &abreve;n &dstrok;&#x1EA5;y &dstrok;&#x1EBF;n cho b&#x1EA1;n.
               pc.time
                 span
                   | Mon - Fri 

@@ -22,47 +22,63 @@ var config = {
 };
 
 router.get('/', function(req, res, next){
-    
     sql.connect(config, function(err){
         if(err) throw err;
         var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
         new sql.Request().query(SL, function(err, result){
-            sql.on('err',err =>{
-                console.log(err);
-            });
             if(err) throw err;
-            else{
-                res.render('Home/index',{
-                    datas : result.recordset,
-                    user: req.cookies.UsersID
-                });
-            }
-        });
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('Home/index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
+        }); 
     });
 });
 
 router.get('/new', function(req, res, next){
     sql.connect(config, function(err){
         if(err) throw err;
+        var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
-        var pages = parseInt(req.query.page) || 1; // n
-        var perPage = 6; // x
-
-        var start = (pages -1) * perPage;
-        var end = pages * perPage;
-
-        var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
-        new sql.Request().query(SLBook, function(err, result){
-            sql.close();
+        new sql.Request().query(SL, function(err, result){
             if(err) throw err;
-            else{
-                res.render('Home/index',{
-                    data : result.recordset.slice(start, end),
-                    user : req.cookies.UsersID,
-                    page : pages
-                });
-            }
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('Home/index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
         });
     });
 });
@@ -164,7 +180,7 @@ router.post('/login/register', function(req, res){
             
             if(err) throw err;
             if(result.recordset[0] == undefined){
-                var insert = "INSERT INTO NguoiDung VALUES('"+email+"','"+password+"',N'"+name+"','"+gioitinh+"','"+date+"','"+map+"','"+phone+"')";
+                var insert = "INSERT INTO NguoiDung VALUES('"+email+"','"+password+"',N'"+name+"','"+gioitinh+"','"+date+"',N'"+map+"','"+phone+"')";
                 new sql.Request().query(insert, function(err, result){
                     if(err) throw err;
                     sql.close();
@@ -215,16 +231,20 @@ router.post('/login', function(req, res){
     
                     return;
                 }
+                var IDnd = result.recordset[0].IDND;
                 var addmin = "SELECT * FROM QuanTri WHERE IDND = "+result.recordset[0].IDND;
                 new sql.Request().query(addmin, function(err, result){
                     sql.close();
                     if(err) throw err;
-                    if(result.recordset.length == 0){
-                        res.cookie('UsersID',result.recordset[0].IDND);
+                    
+                    if(result.recordset[0] == undefined){
+                        res.cookie('UsersID',IDnd);
                         res.redirect('/users');
                     }
-                    res.cookie('UsersID',result.recordset[0].IDND);
-                    res.redirect('/addmin');
+                    if(result.recordset[0] != undefined){
+                        res.cookie('UsersID',result.recordset[0].IDND);
+                        res.redirect('/addmin');
+                    }
                 });
                 
             }

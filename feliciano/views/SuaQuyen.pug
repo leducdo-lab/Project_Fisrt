@@ -151,7 +151,7 @@ style(type='text/css').
   background-color:black;
   color:white;
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 25px;
   }
 header
   nav
@@ -160,7 +160,7 @@ header
         li
           a(href='/addmin', style='font-size: x-large;') DTPBook
         li
-          form(action='/search')
+          form(action='/users/search')
             input.in(type='text', name='q', placeholder='Search..')
         li
           div(style='display: inline-block;')
@@ -184,10 +184,7 @@ header
               a(href='/users/repassword') Đổi mật khẩu
             li
               a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
-        li
-          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
-          map(name='map')
-            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+        
 br
 br
 .col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
@@ -199,6 +196,8 @@ br
     // <li class="active">Thêm sách</li>
     li
       a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
+    li
+      a.lienket(href='/qlyDon') Quản lý đơn hàng
   .row
     .col-lg-12(style=" padding-left: 100px; padding-right: 50px; ")
       h1.page-header(style='color: #fff;') S&#x1EED;a quy&#x1EC1;n cho th&agrave;nh vi&ecirc;n

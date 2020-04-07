@@ -112,9 +112,9 @@ header
             a(href='/users') Home
         if !user
           li
-            a(href='/home') Home
+            a(href='/users') Home
         li
-          a(href='/home/menu1?page=1') Menu
+          a(href='/users/menu?page=1') Menu
         // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
         if user
           li
@@ -132,7 +132,7 @@ header
         li(style='top:12px;')
           img(src='/images/gh.png', alt='ảnh.png', width='38', height='39', usemap='#map')
           map(name='map')
-            area(shape='rect',coords='-1,0,790,745', href='/giohang')
+            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
 if user
   form(action='/users/book', method='POST')
     input(name='id',value=book[0].IDSach.toString(),type='hidden')
@@ -147,6 +147,7 @@ if user
             h2#more-views-lightgallery Xem th&ecirc;m
             .row
               .lightgallery
+                
                 a#lightgallery-item1.include-in-gallery(href='S001.jpg', title=book[0].TenSach.toString())
                   img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'.jpg', alt='image')
                 if book[0].SoAnh > 6
@@ -219,15 +220,28 @@ if user
               //span.discount-percent -35%
             .col-md-12.add-to-box.add-to-box2
               span
-              .add-to-cart.col-md-12.col-sm-12.col-sms-12
-                label(for='qty') S&#x1ED1; l&#x1B0;&#x1EE3;ng:
-                input#qty.input-text.qty(type='number', name='slg', maxlength='12', value='1', title='SL')
-              
-                button.button.btn-cart-view(type='submit',title='Chọn mua')
-                  span
+              if error
+                p(style='color:red;')=error.toString()
+                p(style='color:red;')='Số Lượng còn lại: '+book[0].SoLuong.toString()
+                .add-to-cart.col-md-12.col-sm-12.col-sms-12
+                  label(for='qty') S&#x1ED1; l&#x1B0;&#x1EE3;ng:
+                  input#qty.input-text.qty(type='number', name='slg1', maxlength='12', value='0', title='SL')
+                  
+                  button.button.btn-cart-view(type='submit',title='Chọn mua')
                     span
-                      i.fa.fa-shopping-cart
-                      | Ch&#x1ECD;n mua
+                      span
+                        i.fa.fa-shopping-cart
+                        | Ch&#x1ECD;n mua
+              if !error
+                .add-to-cart.col-md-12.col-sm-12.col-sms-12
+                  label(for='qty') S&#x1ED1; l&#x1B0;&#x1EE3;ng:
+                  input#qty.input-text.qty(type='number', name='slg', maxlength='12', value='1', title='SL')
+                  
+                  button.button.btn-cart-view(type='submit',title='Chọn mua')
+                    span
+                      span
+                        i.fa.fa-shopping-cart
+                        | Ch&#x1ECD;n mua
             .col-md-12.additional-list
               .col-md-4
               
@@ -295,9 +309,17 @@ if !user
               .lightgallery
                 a#lightgallery-item1.include-in-gallery(href='S001.jpg', title=book[0].TenSach.toString())
                   img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'.jpg', alt='image')
-                -for(x = 1; x <= 6; x++)
+                if book[0].SoAnh > 6
+                  -for(x = 2; x <= 6; x++)
+                    a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                if book[0].SoAnh > 1 && book[0].SoAnh < 6
+                  -for(x = 2; x <= book[0].SoAnh; x++)
+                    a.include-in-gallery(href='', title=book[0].TenSach.toString())
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                if book[0].SoAnh == 1
                   a.include-in-gallery(href='', title=book[0].TenSach.toString())
-                    img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/'+x.toString()+'.jpg', alt='image')
+                      img(style='height:60px;width:40px;',src='/images/'+book[0].IDSach.toString()+'/1.jpg', alt='image')
                 
                 
         .col-md-7

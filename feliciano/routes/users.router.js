@@ -23,42 +23,59 @@ router.get('/', function(req, res, next){
         var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
         new sql.Request().query(SL, function(err, result){
-            sql.on('err',err =>{
-                console.log(err);
-            });
             if(err) throw err;
-            else{
-                res.render('users/index',{
-                    datas : result.recordset,
-                    user: req.cookies.UsersID
-                });
-            }
-        });
-        
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+
+                    res.render('users/index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
+        }); 
     });
 });
 
 router.get('/new', function(req, res, next){
     sql.connect(config, function(err){
         if(err) throw err;
+        var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
-        var pages = parseInt(req.query.page) || 1; // n
-        var perPage = 6; // x
-
-        var start = (pages -1) * perPage;
-        var end = pages * perPage;
-
-        var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
-        new sql.Request().query(SLBook, function(err, result){
-            sql.close();
+        new sql.Request().query(SL, function(err, result){
             if(err) throw err;
-            else{
-                res.render('users/index',{
-                    data : result.recordset.slice(start, end),
-                    user : req.cookies.UsersID,
-                    page : pages
-                });
-            }
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
         });
     });
 });
@@ -140,17 +157,24 @@ router.get('/search', function(req, res){
 router.get('/book', function(req,res, next){
     sql.connect(config, function(err){
         if(err) throw err;
+        if(req.query.book){
+            var q = req.query.book;
+            var Book = "SELECT * FROM Sach WHERE IDSach = '"+q+"'";
 
-        var q = req.query.book;
-        var Book = "SELECT * FROM Sach WHERE IDSach = '"+q+"'";
-
-        new sql.Request().query(Book, function(err, result){
-            if(err) throw err;
+            new sql.Request().query(Book, function(err, result){
+                if(err) throw err;
+                res.render('Book/book',{
+                    book : result.recordset,
+                    user : req.cookies.UsersID
+                });
+            });
+        }
+        if(!req.query.book){
             res.render('Book/book',{
                 book : result.recordset,
                 user : req.cookies.UsersID
             });
-        });
+        }
     });
 });
 
@@ -162,23 +186,45 @@ router.post('/book', function(req, res, next){
     }
     sql.connect(config, function(err){
         if(err) throw err;
-        var SoLuong = req.body.slg;
+        if(req.body.slg1 > 0){
+            var SoLuong = req.body.slg1;
+        }
+        else{
+            var SoLuong = req.body.slg;
+        }
         var IDND = req.cookies.UsersID;
         var IDSach = req.body.id;
-        var CheckSL = "SELECT SoLuong FROM Sach WHERE IDSach ='"+IDSach+"'";
+        var CheckSL = "SELECT * FROM Sach WHERE IDSach ='"+IDSach+"'";
         new sql.Request().query(CheckSL, function(err, result){
             if(err) throw err;
+            
             if(SoLuong > result.recordset[0].SoLuong){
                 res.render('Book/book',{
-                    error : 'Khong du so luong trong kho'
+                    error : 'Sản phẩm không đủ',
+                    book : result.recordset,
+                    user : req.cookies.UsersID
                 });
             }
-            var ISRGH = "INSERT INTO GioHang \n VALUES ("+IDND+",'"+IDSach+"',"+SoLuong+")";
-            new sql.Request().query(ISRGH, function(err, result){
-                if(err) throw err;
-                console.log('INSERT');
-                res.redirect('/users/giohang');
-            });
+            if(SoLuong <= result.recordset[0].SoLuong){
+                var check = "SELECT * FROM GioHang WHERE IDSach ='"+req.body.id+"' AND IDND="+req.cookies.UsersID;
+                new sql.Request().query(check, function(err, result){
+                    if(err) throw err;
+                    if(result.recordset.length == 0){
+                        var ISRGH = "INSERT INTO GioHang \n VALUES ("+IDND+",'"+IDSach+"',"+SoLuong+")";
+                        new sql.Request().query(ISRGH, function(err, result){
+                            if(err) throw err;
+                            res.redirect('/users/giohang');
+                        });
+                    }
+                    else{
+                        var update = "UPDATE GioHang SET SoLuong = SoLuong +"+req.body.slg+" WHERE IDSach = '"+req.body.id+"' AND IDND="+req.cookies.UsersID;
+                        new sql.Request().query(update, function(err, result){
+                            if(err) throw err;
+                            res.redirect('/users/giohang');
+                        });
+                    }
+                });
+            }
         });
     });
 });
@@ -249,7 +295,7 @@ router.get('/giohang', function(req, res, next){
     }
     sql.connect(config, function(err){
         if(err) throw err;
-        var GioHang = "SELECT  Sach.TenSach,Sach.IDSach,Sach.Gia,GioHang.SoLuong \n"+ 
+        var GioHang = "SELECT  Sach.TenSach,Sach.IDSach,Sach.Gia,GioHang.SoLuong, Sach.SoLuong AS SL \n"+ 
         "FROM GioHang LEFT JOIN Sach \n"+
         "ON GioHang.IDSach = Sach.IDSach \n"+
         "WHERE IDND = " + req.cookies.UsersID;
@@ -261,7 +307,6 @@ router.get('/giohang', function(req, res, next){
             var Gia = 0;
             for(var x = 0; x < result.recordset.length; x++){
                 Gia += parseInt(result.recordset[x].SoLuong) *parseFloat(result.recordset[x].Gia);
-                
             }
             if(result.recordset.length != 0){
                 res.render('Book/GioHang',{
@@ -280,13 +325,25 @@ router.get('/giohang', function(req, res, next){
 router.post('/giohang',function(req, res, next){
     sql.connect(config, function(err){
         if(err) throw err;
-        var IDSach = req.body.baby;
-        var DELETE = "DELETE FROM GioHang WHERE IDSach = '"+IDSach+"'";
-        new sql.Request().query(DELETE, function(err){
-            if(err) throw err;
-            console.log("DELETE");
-            res.redirect('/users/giohang');
-        });
+        if(req.body.baby){
+            var IDSach = req.body.baby;
+            var DELETE = "DELETE FROM GioHang WHERE IDSach = '"+IDSach+"'";
+            new sql.Request().query(DELETE, function(err){
+                if(err) throw err;
+                console.log("DELETE");
+                res.redirect('/users/giohang');
+            });
+        }
+        if(!req.body.baby){
+            
+            for(var x = 0; x < req.body.user_data.slg.length; x++){
+                var update = "UPDATE GioHang SET SoLuong = "+req.body.user_data.slg[x]+" WHERE IDND = "+req.cookies.UsersID+" AND IDSach = '"+req.body.user_data.idsach[x]+"'";
+                new sql.Request().query(update, function(err, result){
+                    if(err) throw err;
+                });
+            }
+            res.redirect('/users/diachi');
+        }
     });
 });
 
@@ -316,7 +373,7 @@ router.get('/QlyDon',function(req, res, next){
             for(var x = 0; x < data.length; x++){
                 date[x] = data[x].NgayMua.getDate().toString() +'-'+(data[x].NgayMua.getMonth() +1).toString()+'-'+data[x].NgayMua.getFullYear().toString();
             }
-            console.log(date);
+            
             res.render('users/qlydonhang',{
                 DH : result.recordset,
                 date : date
@@ -347,17 +404,34 @@ router.post('/diachi',function(req, res){
         if(err) throw err;
         var ND = "SELECT * FROM NguoiDung WHERE IDND ="+req.body.user_data.idnd;
         new sql.Request().query(ND, function(err, result){
-            var Ten = req.body.ten;
-            var Phone = req.body.phone;
-            var email = req.body.email;
-            var address = req.body.b_address;
+            var Ten = req.body.user_data.ten;
+            var Phone = req.body.user_data.phone;
+            var email = req.body.user_data.email;
+            var address = req.body.user_data.b_address;
             var data = result.recordset;
             if(Ten != data[0].Ten || Phone != data[0].Phone || address != data[0].DiaChi){
-                var update = "UPDATE NguoiDung SET Ten = N'"+Ten+"'\n"+
-                "Phone = '"+Phone+"'\n"+"DiaChi = N'"+address+"'";
+                var update = "UPDATE NguoiDung SET Ten = N'"+Ten+"',\n"+
+                "Phone = '"+Phone+"',\n"+"DiaChi = N'"+address+"'\n"+
+                "WHERE IDND = "+req.cookies.UsersID;
+                
                 new sql.Request().query(update, function(err, result){
                     if(err) throw err;
-                    res.redirect('/users/thanhtoan');
+                    var GioHang = "SELECT  Sach.TenSach,Sach.IDSach,Sach.Gia,GioHang.SoLuong \n"+ 
+                    "FROM GioHang LEFT JOIN Sach \n"+
+                    "ON GioHang.IDSach = Sach.IDSach \n"+
+                    "WHERE IDND = " + req.cookies.UsersID;
+                    new sql.Request().query(GioHang, function(err, result){
+                        if(err) throw err;
+                        
+                        var Gia = 0;
+                        for(var x = 0; x < result.recordset.length; x++){
+                            Gia += parseInt(result.recordset[x].SoLuong) *parseFloat(result.recordset[x].Gia);
+                        }
+                        res.render('users/thanhtoan2',{
+                            Gia : Gia,
+                            Book : result.recordset
+                        })
+                    });
                 });
             }
             res.redirect('/users/thanhtoan');
@@ -389,7 +463,51 @@ router.get('/thanhtoan', function(req, res, next){
 });
 
 router.post('/thanhtoan',function(req, res){
-    
+
+    sql.connect(config, function(err){
+        
+        if(err) throw err;
+                
+        var TongTien = req.body.book_gia;
+        
+        var LSMua = "INSERT INTO LichSuMua(IDND,TongTien,NgayMua) \nVALUES ("+req.cookies.UsersID+","+TongTien+",GETDATE())";
+        new sql.Request().query(LSMua, function(err, result){
+            if(err) throw err;
+        });
+        
+        new sql.Request().query("SELECT MaDonHang FROM LichSuMua WHERE IDND = "+req.cookies.UsersID, function(err, result){
+            if(err) throw err;
+            var IDSach = [];
+            var SLg = [];
+            for(var x = 0; x < req.body.book_id.length; x++){
+                IDSach[x] = req.body.book_id[x];
+                SLg[x] = req.body.book_slg[x];
+            }
+            var MDH = result.recordset[0].MaDonHang;
+            
+            for(var x = 0; x < req.body.book_id.length; x++){
+                new sql.Request().query("INSERT INTO SachDaMua VALUES('"+IDSach[x]+"',"+MDH+","+req.body.book_slg[x]+")", function(err, result){
+                    if(err) throw err;
+                    console.log("INSERT");
+                });
+                
+                new sql.Request().query("SELECT SoLuong FROM Sach WHERE IDSach='"+req.body.book_id[x]+"'", function(err, result){
+                    if(err) throw err;
+                    
+                    var SL = result.recordset[0].SoLuong;
+                    for(var x = 0; x < req.body.book_id.length; x++){
+                        new sql.Request().query("UPDATE Sach SET SoLuong ="+(SL - parseInt(req.body.book_slg[x]))+"  WHERE IDSach='"+req.body.book_id[0]+"'",function(err, result){
+                            if(err) throw err;
+                        });
+                    }
+                });
+            }
+            new sql.Request().query("DELETE FROM GioHang WHERE IDND = "+req.cookies.UsersID, function(err, result){
+                if(err) throw err;
+            });
+        });
+        res.redirect('/users');
+    });
 });
 
 router.get('/repassword', function(req, res){

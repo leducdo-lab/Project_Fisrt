@@ -34,26 +34,30 @@ module.exports.requireAuth = function(req, res, next){
 module.exports.NewBook = function(req, res, next){
     sql.connect(config, function(err){
         if(err) throw err;
-        
-        var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+        var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
-        new sql.Request().query(SLBook, function(err, result){
-            sql.close();
+        new sql.Request().query(SL, function(err, result){
+            if(err) throw err;
+            var datas = result.recordset;
             var pages = parseInt(req.query.page) || 1; // n
             var perPage = 6; // x
 
-            var perpage = result.recordset.length / perPage;
             var start = (pages -1) * perPage;
             var end = pages * perPage;
-            if(err) throw err;
-            else{
-                res.render('index',{
-                    data: result.recordset.slice(start, end),
-                    user : req.cookies.UsersID,
-                    page : pages,
-                    perP : perpage
-                });
-            }
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
         });
     });
 };
@@ -62,20 +66,29 @@ module.exports.MAXBook = function(req, res, next){
     sql.connect(config, function(err){
         if(err) throw err;
         var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
+
         new sql.Request().query(SL, function(err, result){
             if(err) throw err;
-            if(req.cookies.UsersID){
-                res.render('index',{
-                    datas: result.recordset,
-                    user : req.cookies.UsersID
-                });
-            }
-            if(!req.cookies.UsersID){
-                res.render('index',{
-                    datas: result.recordset
-                });
-            }
-            sql.close();
-        });
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
+        }); 
     });
 };

@@ -103,6 +103,8 @@ VALUES ('duong6736','duong5799',N'Hồ Khánh Dương',0,'19990705',N'Tân Kỳ,
 ('phuong6848','phuong0408',N'Nguyễn Thị Thu Phương',1,'19990804',N'Hà Nội','0967778954')
 GO
 
+INSERT INTO QuanTri
+VALUES (2),(4)
 
 INSERT INTO Sach(TenSach, IDSach, MoTa, Gia, NhaXB, TacGia, NgayXB,SoLuong,NgayUp,SoAnh)
 VALUES (N'Bố Già','S001',N'Bố Già (Ấn Bản Kỉ Niệm Năm Mươi Năm Xuất Bản Lần Đầu)\n

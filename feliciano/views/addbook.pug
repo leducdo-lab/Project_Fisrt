@@ -163,7 +163,7 @@ style(type='text/css').
   background-color:black;
   color:white;
   text-align: center;
-  padding-bottom: 28px;
+  padding-bottom: 26px;
   }
 header
   nav
@@ -186,7 +186,7 @@ header
           a(href='/users/menu') Menu
         // <li class="nav-item cta"><a href="contact.html" class="nav-link">Login</a></li>
         li
-          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: 12px;") T&agrave;i kho&#x1EA3;n
+          a(href='#',style=" padding-top: 12.8; border-top-width: 20px; padding-top: 13px; padding-bottom: -5px;") T&agrave;i kho&#x1EA3;n
           ul.sub-menu
             li
               a(href='/users/UsersTK') Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
@@ -196,10 +196,6 @@ header
               a(href='/users/repassword') Đổi mật khẩu
             li
               a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
-        li
-          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
-          map(name='map')
-            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
 br
 br
 br
@@ -213,6 +209,8 @@ br
       a.lienket(href='/addbook') Th&ecirc;m s&aacute;ch
     li
       a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
+    li
+      a.lienket(href='/qlyDon') Quản lý đơn hàng
     
   .row
     .col-lg-12
@@ -280,7 +278,7 @@ br
         label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Gi&aacute; ti&#x1EC1;n
       script.
         function format_curency(a) {
-        a.value = a.value.replace(/(\\d)(?=(\d{3})+(?!\d))/g, "$1.");
+          a.value = a.value.replace(/(\\d)(?=(\d{3})+(?!\d))/g, "$1.");
         }
       input#Gia(onchange='format_curency(this);', type='text', name='Giatien', size='50', max='100000')
       

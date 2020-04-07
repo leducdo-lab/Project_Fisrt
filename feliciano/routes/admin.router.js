@@ -21,18 +21,28 @@ router.get('/', function(req, res, next){
         var SL = "SELECT * FROM Sach WHERE IDSach IN ( SELECT TOP(4) IDSach FROM SachDaMua GROUP BY IDSach ORDER BY COUNT(SoLuong) DESC )";
 
         new sql.Request().query(SL, function(err, result){
-            sql.on('err',err =>{
-                console.log(err);
-            });
             if(err) throw err;
-            else{
-                res.render('Admin/index',{
-                    datas : result.recordset,
-                    user: req.cookies.UsersID
-                });
-            }
-        });
-        
+            var datas = result.recordset;
+            var pages = parseInt(req.query.page) || 1; // n
+            var perPage = 6; // x
+
+            var start = (pages -1) * perPage;
+            var end = pages * perPage;
+
+            var SLBook = "SELECT TOP(12) IDSach,TenSach,Gia,TacGia FROM Sach ORDER BY NgayUp DESC";
+            new sql.Request().query(SLBook, function(err, result){
+                sql.close();
+                if(err) throw err;
+                else{
+                    res.render('Admin/index',{
+                        datas : datas,
+                        data : result.recordset.slice(start, end),
+                        user : req.cookies.UsersID,
+                        page : pages
+                    });
+                }
+            });
+        }); 
     });
 });
 

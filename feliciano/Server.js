@@ -9,7 +9,7 @@ var addminRouter = require('./routes/admin.router');
 
 
 var app = express();
-var port = 1223;
+var port = 1225;
 app.set('view engine', 'pug');
 app.set('views', './views');
 
@@ -193,7 +193,7 @@ app.get('/qlybook', function(req, res, next){
         if(err) throw err;
 
         var pages = parseInt(req.query.page) || 1; // n
-        var perPage = 6; // x
+        var perPage = 10; // x
 
         var start = (pages -1) * perPage;
         var end = pages * perPage;
@@ -221,7 +221,7 @@ app.get('/Suabook',function(req, res, next){
         var bookname = req.query.book;
         var bookName = "SELECT * FROM Sach WHERE TenSach LIKE N'"+bookname+"'";
         var date = new Date();
-        console.log(bookName);
+        
         new sql.Request().query(bookName, function(err, result){
             if(err) throw err;
             var dmy = result.recordset[0].NgayXB.split("-",3);
@@ -236,11 +236,13 @@ app.get('/Suabook',function(req, res, next){
 });
 
 app.post('/Suabook', function(req, res, next){
+    // console.log(req.body);
     sql.connect(config, function(err){
         if(err) throw err;
         var bookName = req.body.tensach;
-        var image = req.body.Anh;
-        var date = req.body.user_data.ngay[1] +'-'+req.body.user_data.thang+'-'+req.body.user_data.nam;
+        // var image = req.body.Anh;
+        var date = req.body.user_data.ngay[0] +'-'+req.body.user_data.thang+'-'+req.body.user_data.nam;
+        
         var soluong = req.body.soluong;
         var TacGia = req.body.Tacgia;
         var NhaXB = req.body.Nhaxuatban;
@@ -251,10 +253,35 @@ app.post('/Suabook', function(req, res, next){
         "TacGia = N'"+TacGia+"',\n"+
         "NhaXB = N'"+NhaXB+"',\n"+
         "SoLuong = "+parseInt(soluong)+",\n"+
-        "Gia = "+parseInt(Gia)+"\nWHERE TenSach = N'"+bookName+"'";
-        console.log(UPDATE);
+        "Gia = "+parseInt(Gia)+"\nWHERE IDSach = '"+req.body.idsach+"'";
+        
         new sql.Request().query(UPDATE, function(err, result){
-            res.redirect('/qlybook');
+            if(err) throw err;
+            if(req.body.the_loai == 'Văn học'){
+                req.body.the_loai = 1;
+            }
+            if(req.body.the_loai == 'Kỹ năng sống'){
+                req.body.the_loai = 5;
+            }
+            if(req.body.the_loai == 'Tiểu thuyết'){
+                req.body.the_loai = 6;
+            }
+            if(req.body.the_loai == 'Truyện tranh'){
+                req.body.the_loai = 2;
+            }
+            if(req.body.the_loai == 'Văn hóa - Kinh tế'){
+                req.body.the_loai = 3;
+            }
+            if(req.body.the_loai == 'Kiến thức tổng hợp'){
+                req.body.the_loai = 4;
+            }
+            
+            var updateTL = "UPDATE LoaiSach SET IDLoai ="+parseInt(req.body.the_loai)+" WHERE IDSach = '"+req.body.idsach+"'";
+            new sql.Request().query(updateTL, function(err, result){
+                if(err) throw err;
+                res.redirect('/qlybook');
+            })
+            
         });
     })
 });
@@ -368,6 +395,45 @@ app.get('/search', function(req, res){
                 pages : pg,
                 pg : pages,
                 q : q
+            });
+        });
+    });
+});
+
+app.get('/qlyDon', function(req, res){
+    if(!req.cookies.UsersID){
+        res.redirect('/home/login');
+        return;
+    }
+    sql.connect(config, function(err){
+        if(err) throw err;
+        var select = "SELECT l.MaDonHang,IDND,TongTien,TrangThai,c.SoLuong AS SL,c.TenSach"+
+            " FROM LichSuMua AS l INNER JOIN ("+ "SELECT SachDaMua.SoLuong, TenSach, MaDonHang FROM SachDaMua INNER JOIN Sach"+
+            " ON SachDaMua.IDSach = Sach.IDSach"+") AS c \n"+
+            " ON c.MaDonHang = l.MaDonHang";
+        new sql.Request().query(select, function(err, result){
+            if(err) throw err;
+            var dodai = result.recordset.length -1;
+            var page = parseInt(req.query.page) || 1;
+            var pg;
+            var y=0;
+            for(x=0;x<=result.recordset.length -1;x++){
+                if(y<result.recordset[x].MaDonHang)
+                    y=result.recordset[x].MaDonHang;
+            }
+            if(result.recordset[dodai].MaDonHang % 8 == 0){
+                pg = parseInt(result.recordset[dodai].MaDonHang / 8);
+            }
+            if(result.recordset[dodai].MaDonHang % 8 != 0){
+                pg = parseInt(result.recordset[dodai].MaDonHang / 8) + 1;
+            }
+            
+            res.render('qlyDonHang',{
+                DH : result.recordset,
+                dodai : dodai,
+                slg : pg,
+                page : page,
+                max : y
             });
         });
     });

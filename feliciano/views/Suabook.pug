@@ -163,7 +163,7 @@ style(type='text/css').
   background-color:black;
   color:white;
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 25px;
   }
 header
   nav
@@ -196,10 +196,7 @@ header
               a(href='/users/repassword') Đổi mật khẩu
             li
               a(style='color: chocolate;', href='/users/clearCookie') Tho&aacute;t
-        li
-          img(src='/images/gh.png', alt='ảnh.png', width='35', height='34', usemap='#map')
-          map(name='map')
-            area(shape='rect',coords='-1,0,790,745', href='/users/giohang')
+        
 br
 br
 .col-sm-9.col-sm-offset-3.col-lg-10.col-lg-offset-2.main
@@ -221,6 +218,8 @@ br
       a.lienket(href='/qlybook') Qu&#x1EA3;n l&yacute; s&aacute;ch
     // <li class="active">Quản lý sách</li>
     // </ol>
+    li
+      a.lienket(href='/qlyDon') Quản lý đơn hàng 
   .row
     .col-lg-12
       h2(style='color:gold; margin-left: 400px; margin-top: 50px;') Ch&#x1EC9;nh s&#x1EED;a th&ocirc;ng tin s&aacute;ch
@@ -239,7 +238,7 @@ br
       .ty-control-label
         label.ty-control-group__title.cm-required.cm-trim(for='firstname', style='color: #fff;') Th&#x1EC3; lo&#x1EA1;i
       .popup__select.ty-control-value
-        select.select-date(name='user_data[ngay]')
+        select.select-date(name='the_loai')
           option(value='') Th&#x1EC3; lo&#x1EA1;i
           option(value='Văn học') V&abreve;n h&#x1ECD;c
           option(value='Kỹ năng sống') K&#x1EF9; n&abreve;ng s&#x1ED1;ng
@@ -359,6 +358,7 @@ br
         <input type="number" id="Gia" name="Giatien" size="32" max="100000" class="ty-input-text cm-focus">
         </div>
     .ty-control-group(style='margin: 25px 400px 25px; ')
+      input(type="hidden", name ='idsach', value=data[0].IDSach.toString())
       button.button(type='submit')
         | L&#x1B0;u
 footer

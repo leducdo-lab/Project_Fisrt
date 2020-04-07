@@ -42,6 +42,58 @@ head
     align-items: center;
     justify-content: center;
     }
+    style.
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    /*==Style cơ bản cho website==*/
+    body {
+    font-family: sans-serif;
+    color: #333;
+    }
+    /*==Style cho menu===*/
+    #menu ul {
+    /* background: #1F568B; */
+    list-style-type: none;
+    text-align: center;
+    }
+    #menu li {
+    color: #f1f1f1;
+    display: inline-block;
+    width: 118px;
+    height: 44px;
+    line-height: 30px;
+    line-break: 70px;
+    margin-left: -5px;
+    }
+    #menu a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    }
+    #menu a:hover {
+    background: #F1F1F1;
+    color: #333;
+    }
+    /*==Dropdown Menu==*/
+    .sub-menu {
+    display: none;
+    position: absolute;
+    }
+    #menu li {
+    position: relative;
+    }
+    #menu li:hover .sub-menu {
+    display: block;
+    }
+    .sub-menu li {
+    margin-left: 1 !important;
+    }
+    /*==Menu cấp 3==*/
+    .sub-menu > ul {
+    display: none !important;
+    }
 .py-1.bg-black.top
   .container
     .row.no-gutters.d-flex.align-items-start.align-items-center.px-md-0
@@ -66,12 +118,14 @@ nav#ftco-navbar.navbar.navbar-expand-lg.navbar-dark.ftco_navbar.bg-dark.ftco-nav
     button.navbar-toggler(type='button', data-toggle='collapse', data-target='#ftco-nav', aria-controls='ftco-nav', aria-expanded='false', aria-label='Toggle navigation')
       span.oi.oi-menu
       |  Menu
-    #ftco-nav.collapse.navbar-collapse
+    #menu.collapse.navbar-collapse
+      form(action='/search',method='GET')
+        input(type='text', name='q', placeholder='Search..',style=" width: 506px; height: 46px;")
       ul.navbar-nav.ml-auto
         li.nav-item
-          a.nav-link(href='/home') Home
+          a(style= 'border-right-width: 10px; padding-right: 25px; margin-right: 20px;').nav-link(href='/home') Home
         li.nav-item
-          a.nav-link(href='/home/menu1?page=1') Menu
+          a(style=' border-right-width: 10px; padding-right: 25px; margin-right: 20px;').nav-link(href='/home/menu1?page=1') Menu
         li.nav-item.cta
           a.nav-link(href='/home/login') Login
 // END nav
